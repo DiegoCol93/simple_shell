@@ -21,13 +21,25 @@ int execute(char **argv)
 	if (pid < 0)
 	{
 		perror("Error");
+		while (argv[i])
+		{
+			free(argv[i]);
+			i++;
+		}
+		free(argv);
 		return (1);
 	}
 	/*Child process*/
 	else if (pid == 0)
 	{
 		execve(argv[0], argv, NULL);
-		perror("Error");
+		perror("./super_shell");
+		while (argv[i])
+		{
+			free(argv[i]);
+			i++;
+		}
+		free(argv);
 		exit(EXIT_FAILURE);
 	}
 	/*Parent Process*/
