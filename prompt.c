@@ -24,7 +24,7 @@ int main(void)
 		if (bytes == -1)
 			break;
 		buffer[bytes - 1] = '\0';
-		arguments = divide_string(buffer);
+		arguments = divide_string(buffer, " ");
 		execute(arguments);
 		write(STDOUT_FILENO, "$ ", 2);
 	}

@@ -31,14 +31,3 @@ list_t *list_path(const char *name)
 	print_list(head);
 	return (head);
 }
-
-int main(void)
-{
-	char *name = "PATH";
-	list_t *head;
-
-	head = list_path(name);
-	free_list(head);
-	head = NULL;
-	return (0);
-}

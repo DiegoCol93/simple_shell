@@ -12,7 +12,7 @@
  * |------------------- and Diego Lopez ------------------|
  * |---------------- November - 12 - 2020 ----------------|
  */
-char **divide_string(char *str)
+char **divide_string(char *str, const char *delim)
 {
 	char *token, *token2;
 	int i = 0, count = 0;
@@ -20,18 +20,18 @@ char **divide_string(char *str)
 	char *str2;
 
 	str2 = _strdup(str);
-	token = strtok(str, " ");
-	while (token != NULL)
+	token = strtok(str, delim);
+	while (token != NULL) /* for counting words */
 	{
-		token = strtok(NULL, " ");
+		token = strtok(NULL, delim);
 		count++;
 	}
 	buffer = malloc(sizeof(char *) * (count + 1));
-	token2 = strtok(str2, " ");
-	while (token2 != NULL)
+	token2 = strtok(str2, delim);
+	while (token2 != NULL) /* for writing on buffer */
 	{
 		buffer[i] = _strdup(token2);
-		token2 = strtok(NULL, " ");
+		token2 = strtok(NULL, delim);
 		i++;
 	}
 	buffer[i] = NULL;

@@ -14,45 +14,28 @@
  */
 char *_getenv(const char *name)
 {
-	unsigned int i;
+	unsigned int i, j;
 	extern char **environ;
-	char **argument, *env_value = NULL;
+	char **argument = NULL, *env_value = NULL;
 	int equal;
 
 	i = 0;
-	while (environ[i] != NULL)
+	while (environ[i] != NULL) /* Runs through env variables */
 	{
 		argument = divide_string(environ[i], "=");
 		equal = _strcmp(argument[0], name);
 		if (equal == 0)
 		{
 			env_value = _strdup(argument[1]);
+			for (j = 0; argument[j]; j++)
+				free(argument[j]);
+			free(argument);
 			break;
 		}
-		else
-			free(argument[i]);
+		for (j = 0; argument[j]; j++)
+			free(argument[j]);
+		free(argument);
 		i++;
 	}
-/*	for(j = 0; argument[j]; j++)
-	free(argument[j]);*/
-	free(argument);
 	return (env_value);
 }
-/*
-/**
- * main - prints the environment using environ.
- *
- * Return: Always 0.
- *
-int main(int ac, char **av)
-{
-	char *name = av[1];
-	char *value;
-
-	value = _getenv(name);
-	if (value != NULL)
-		printf("%s\n", value);
-	else
-		printf("(null)\n");
-	return (0);
-}*/
