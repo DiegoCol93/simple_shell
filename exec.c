@@ -14,32 +14,21 @@
 int execute(char **argv)
 {
 	pid_t pid;
-	int i = 0;
 
 	/*Fork a child process.*/
 	pid = fork();
 	if (pid < 0)
 	{
 		perror("Error");
-		while (argv[i])
-		{
-			free(argv[i]);
-			i++;
-		}
-		free(argv);
+		free_exec(argv);
 		return (1);
 	}
 	/*Child process*/
 	else if (pid == 0)
 	{
 		execve(argv[0], argv, NULL);
-		perror("./super_shell");
-		while (argv[i])
-		{
-			free(argv[i]);
-			i++;
-		}
-		free(argv);
+		perror("./hsh");
+		free_exec(argv);
 		exit(EXIT_FAILURE);
 	}
 	/*Parent Process*/
@@ -47,11 +36,28 @@ int execute(char **argv)
 	{
 		wait(NULL);
 	}
+	free_exec(argv);
+	return (0);
+}
+/**
+ * free_exec    - Creates the processes for executing a program.
+ *
+ *  Arguments:
+ *    @argv:    - Pointer to array of arguments.
+ *
+ * |---------------- Written by Daniel Cortes ----------------|
+ * |-------------------- and Diego Lopez ---------------------|
+ * |------------------- November 12 2020 ---------------------|
+ */
+
+void free_exec(char **argv)
+{
+	int i = 0;
+
 	while (argv[i])
 	{
 		free(argv[i]);
 		i++;
 	}
 	free(argv);
-	return (0);
 }

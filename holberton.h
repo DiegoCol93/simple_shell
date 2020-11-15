@@ -21,37 +21,40 @@
 typedef struct list_s
 {
 	char *str;
-   	struct list_s *next;
+	struct list_s *next;
 } list_t;
 
-/* Duplicates a string using malloc */
+/* Duplicates a string using malloc. */
 char *_strdup(char *str);
 
-/* Executes a program */
+/* Executes a program. */
 int execute(char **argv);
 
-/* Function that divides a string into an arraw of word */
+/* Function that divides a string into an arraw of word. */
 char **divide_string(char *str, const char *delim);
 
-/*Function that gets an environment variable*/
-char *_getenv(const char *name);
+/* Function that gets an environment variable. */
+char *_getenv(const char *name, char **env);
 
-/*Function that compare strings*/
+/* Function that compare strings. */
 int _strcmp(const char *s1, const char *s2);
 
-/*function that prints directories of the path env*/
+/* Function that prints directories of the path env. */
 void print_path(char *name);
 
-/*Function adds a new node at the end of linked list*/
+/* Function adds a new node at the end of linked list. */
 list_t *add_node_end(list_t **head, const char *str);
 
-/*Function that builds a linked list of the PATH directories*/
+/* Function that builds a linked list of the PATH directories. */
 list_t *list_path(const char *name);
 
-/*Function that print a linked list*/
+/* Function that print a linked list. */
 size_t print_list(const list_t *h);
 
-/*Function that frees a linked list*/
+/* Function that frees a linked list. */
 void free_list(list_t *head);
+
+/* Function that frees a child execution. */
+void free_exec(char **argv);
 
 #endif /*FILE_H*/

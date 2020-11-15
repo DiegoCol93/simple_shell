@@ -7,7 +7,7 @@
  *    @s1:    - string 1.
  *    @s2:    - string 2.
  *
- *   Return:  - integer with the difference between strings. 
+ *   Return:  - integer with the difference between strings.
  *
  * |----------------- Written by Daniel Cortes ----------------------------|
  * |--------------------- and Diego Lopez ---------------------------------|

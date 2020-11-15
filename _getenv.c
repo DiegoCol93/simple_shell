@@ -1,41 +1,42 @@
 #include "holberton.h"
 
 /**
- * _getenv - function that gets the value of a env variable.
+ * _getenv      - Function that gets the value of a env variable.
  *
  *  Arguments:
- *    @name:    - Pointer to name of env variable.
+ *    @name:    - Name of the enviroment variable.
+ *     @env:    - Pointer to enviroment variables.
  *
- *   Return:  - on success, pointer to value of env variable. NULL for fail.
+ *   Return:    - on success, pointer to value of env variable.
+ *                NULL for fail.
  *
- * |---------------------- Written by Daniel Cortes ----------------------|
- * |-------------------------- and Diego Lopez ---------------------------|
- * |-------------------------- November 14 2020 --------------------------|
+ * |----------------- Written by Daniel Cortes -----------------|
+ * |--------------------- and Diego Lopez ----------------------|
+ * |------------------- November - 14 / 2020 -------------------|
  */
-char *_getenv(const char *name)
+char *_getenv(const char *name, char **env)
 {
 	unsigned int i, j;
-	extern char **environ;
-	char **argument = NULL, *env_value = NULL;
+/*	extern char **environ; Not usable due to Betty restrictions. */
+	char *env_value = NULL;
 	int equal;
 
 	i = 0;
-	while (environ[i] != NULL) /* Runs through env variables */
+	for (i = 0; env[i] != NULL; i++) /* Runs through env variables */
 	{
-		argument = divide_string(environ[i], "=");
-		equal = _strcmp(argument[0], name);
+		for (j = 0; env[i][j] != '='; j++)
+			equal = env[i][j] - name[j];
 		if (equal == 0)
 		{
-			env_value = _strdup(argument[1]);
-			for (j = 0; argument[j]; j++)
-				free(argument[j]);
-			free(argument);
-			break;
+			for (j = 0; env[i][j]; j++)
+			{
+				if (env[i][j] == '=')
+				{
+					env_value = env[i] + j + 1;
+					break;
+				}
+			}
 		}
-		for (j = 0; argument[j]; j++)
-			free(argument[j]);
-		free(argument);
-		i++;
 	}
 	return (env_value);
 }

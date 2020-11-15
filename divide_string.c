@@ -5,6 +5,7 @@
  *                 and creates an array of words.
  *   Arguments:
  *     @str:     - String to split.
+ *    @delim:    - Delimiter character.
  *
  *    Return:    - Array of words of from string.
  *

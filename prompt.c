@@ -17,7 +17,8 @@ int main(void)
 	int bytes = 0;
 	char **arguments;
 
-	write(STDOUT_FILENO, "$ ", 2);
+	if (isatty(STDIN_FILENO) > 0)
+		write(STDOUT_FILENO, "$ ", 2);
 	while (1)
 	{
 		bytes = getline(&buffer, &len, stdin);
@@ -26,9 +27,11 @@ int main(void)
 		buffer[bytes - 1] = '\0';
 		arguments = divide_string(buffer, " ");
 		execute(arguments);
-		write(STDOUT_FILENO, "$ ", 2);
+		if (isatty(STDIN_FILENO) > 0)
+			write(STDOUT_FILENO, "$ ", 2);
 	}
-	write(STDOUT_FILENO, "\n", 2);
+	if (isatty(STDIN_FILENO) > 0)
+		write(STDOUT_FILENO, "\n", 2);
 	free(buffer);
 	return (0);
 }

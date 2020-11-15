@@ -1,7 +1,7 @@
 #include "holberton.h"
 
 /**
- * _getenv - function that gets the value of a env variable.
+ * list_path - function that gets the value of a env variable.
  *
  *  Arguments:
  *    @name:    - Pointer to name of env variable.
@@ -19,7 +19,7 @@ list_t *list_path(const char *name)
 	list_t *head;
 
 	head = NULL;
-	value = _getenv(name);
+	value = _getenv(name, NULL);
 	directories = divide_string(value, ":");
 	for (i = 0; directories[i]; i++)
 	{

@@ -17,7 +17,7 @@ void print_path(char *name)
 	int i = 0;
 
 	name = "PATH";
-	value = _getenv(name);
+	value = _getenv(name, NULL);
 	directories = divide_string(value, ":");
 	if (directories)
 	{
@@ -26,14 +26,4 @@ void print_path(char *name)
 	}
 	else
 		printf("(null)\n");
-}
-/**
- * main - prints the environment using environ.
- *
- * Return: Always 0.
- */
-int main(void)
-{
-	print_path("PATH");
-	return (0);
 }
