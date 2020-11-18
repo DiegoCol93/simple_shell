@@ -16,6 +16,7 @@ int execute(char **argv, char **env)
 {
 	pid_t pid;
 	char *path_name;
+	struct stat st;
 
 	path_name = _which(argv[0], env);
 	if (path_name)
@@ -40,31 +41,10 @@ int execute(char **argv, char **env)
 		else
 		{
 			wait(NULL);
+			if (stat(argv[0], &st) != 0)
+				free(path_name);
 		}
-		free_exec(argv);
 	}
+	free_exec(argv);
 	return (0);
-}
-
-/**
- * free_exec    - Creates the processes for executing a program.
- *
- *  Arguments:
- *    @argv:    - Pointer to array of arguments.
- *
- * |---------------- Written by Daniel Cortes ----------------|
- * |-------------------- and Diego Lopez ---------------------|
- * |------------------- November 12 2020 ---------------------|
- */
-
-void free_exec(char **argv)
-{
-	int i = 0;
-
-	while (argv[i])
-	{
-		free(argv[i]);
-		i++;
-	}
-	free(argv);
 }

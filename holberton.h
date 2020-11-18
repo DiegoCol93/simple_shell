@@ -11,12 +11,30 @@
 #include <fcntl.h>
 
 /**
- * struct list_s - singly linked list
- * @str: string - (malloc'ed string)
- * @next: points to the next node
+ * struct built_in_s - Structure to save the built_in functions.
  *
- * Description: singly linked list node structure
- * for Holberton project
+ *    Data types:
+ *       @str:      - To save the name of the built-in command.
+ *        @f:       - Pointer to the corresponding built-in function.
+ *
+ *   Description:   - This is a structure to save the command name and
+ *                    the pointer to its corresponding function.
+ */
+typedef struct built_in_s
+{
+	char *str;
+	int (*f)();
+} built_in_t;
+
+/**
+ * struct list_s   - Structure for a linked list PATH env.variable.
+ *
+ *  Data types:
+ *    @str:        - Malloc'ed string to save each dir from PATH.
+ *    @next:       - Pointer to the next node.
+ *
+ *  Description:   - Singly linked list node structure
+ *                   for storing and using the PATH variable.
  */
 typedef struct list_s
 {
@@ -43,7 +61,7 @@ int _strcmp(const char *s1, const char *s2);
 void print_path(char *name);
 
 /* Function adds a new node at the end of linked list. */
-list_t *add_node_end(list_t **head, const char *str);
+list_t *add_node_end(list_t **head, char *str);
 
 /* Function that builds a linked list of the PATH directories. */
 list_t *list_path(const char *name, char **env);
@@ -57,7 +75,15 @@ void free_list(list_t *head);
 /* Function that frees a child execution. */
 void free_exec(char **argv);
 
-/*Function that looks for files in the current PATH*/
+/* Function that looks for files in the current PATH. */
 char *_which(char *filename, char **env);
 
+/* Function to get the correct built-in being called. */
+int get_built_in(char **arguments, char **env);
+
+/* Exit function to cause normal exit of the program. */
+int exit_shell(void);
+
+/* Function to print the enviroment variables. */
+int print_env(char **env);
 #endif /*FILE_H*/

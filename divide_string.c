@@ -19,17 +19,18 @@ char **divide_string(char *str, const char *delim)
 	char *token, *token2;
 	int i = 0, count = 0;
 	char **buffer;
-	char *str2;
+	char *str2, *str3;
 
 	str2 = _strdup(str);
-	token = strtok(str, delim);
+	str3 = _strdup(str);
+	token = strtok(str2, delim);
 	while (token != NULL) /* for counting words */
 	{
 		token = strtok(NULL, delim);
 		count++;
 	}
 	buffer = malloc(sizeof(char *) * (count + 1));
-	token2 = strtok(str2, delim);
+	token2 = strtok(str3, delim);
 	while (token2 != NULL) /* for writing on buffer */
 	{
 		buffer[i] = _strdup(token2);
@@ -38,5 +39,6 @@ char **divide_string(char *str, const char *delim)
 	}
 	buffer[i] = NULL;
 	free(str2);
+	free(str3);
 	return (buffer);
 }

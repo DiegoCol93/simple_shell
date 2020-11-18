@@ -47,12 +47,14 @@ char *_which(char *filename, char **env)
 			ptr[j + k + 1] = '\0';
 			if (stat(ptr, &st) == 0)
 			{
+				free_list(head);
 				return (ptr);
 			}
 			free(ptr);
 			tmp = tmp->next;
 		}
 	}
+	free_list(head);
 	return (NULL);
 }
 /**
