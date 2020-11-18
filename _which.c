@@ -1,14 +1,15 @@
 #include "holberton.h"
 
 /**
- * _which      - Function that looks for files in the current PATH
+ * _which       - Function that looks for files in the PATH.
  *
  *  Arguments:
- *    @name:    - Name of the enviroment variable.
+ *  @filename:  - Name of the file to find on PATH.
  *     @env:    - Pointer to enviroment variables.
  *
- *   Return:    - on success, pointer to value of env variable.
- *                NULL for fail.
+ *   Return:    - On succes returns a concatenated string with
+ *                the absolute path to the file being called or
+ *                NULL if it fails.
  *
  * |----------------- Written by Daniel Cortes -----------------|
  * |--------------------- and Diego Lopez ----------------------|
@@ -22,8 +23,8 @@ char *_which(char *filename, char **env)
 	char *directory = NULL, *ptr = NULL;
 	struct stat st;
 
-	if(stat(filename, &st) == 0)
-		return(filename);
+	if (stat(filename, &st) == 0)
+		return (filename);
 	head = list_path("PATH", env);
 	tmp = head;
 	if (tmp)
@@ -41,7 +42,7 @@ char *_which(char *filename, char **env)
 			for (j = 0; directory[j]; j++)
 				ptr[j] = directory[j];
 			ptr[j] = '/';
-			for(k = 0; filename[k]; k++)
+			for (k = 0; filename[k]; k++)
 				ptr[j + k + 1] = filename[k];
 			ptr[j + k + 1] = '\0';
 			if (stat(ptr, &st) == 0)
@@ -52,9 +53,11 @@ char *_which(char *filename, char **env)
 			tmp = tmp->next;
 		}
 	}
-	return(NULL);
+	return (NULL);
 }
-/**int main(int ac, char **av, char **env)
+/**
+ *main - test to print if this function worked.
+ *int main(int ac, char **av, char **env)
  *{
  *	char *path_name;
  *	(void)ac;
@@ -63,4 +66,5 @@ char *_which(char *filename, char **env)
  *	path_name = _which(av[1], env);
  *	printf("%s\n", path_name);
  *	return (0);
- }*/
+ *}
+ */

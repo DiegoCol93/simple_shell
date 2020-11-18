@@ -4,6 +4,7 @@
  *
  * Arguments:
  *   @argv:     - Pointer to array of arguments.
+ *    @env:     - Pointer to the enviroment variables.
  *
  *   Return:    - 0 on success.
  *

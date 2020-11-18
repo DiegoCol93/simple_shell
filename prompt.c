@@ -1,10 +1,15 @@
 #include "holberton.h"
 /**
- * main       - Program that prints "$ " on the standard output,
- *              waits for the user to enter a command and then
- *	        executes the command entered.
+ * main         - Program that prints "$ " on the standard output,
+ *                waits for the user to enter a command and then
+ *	          executes the command entered.
  *
- * Return:    - 0 on completion.
+ *  Arguments:
+ *     @ac:     - Number of arguments passed when starting shell.
+ *     @av:     - Pointer to array of arguments given.
+ *    @env:     - Pointer to the enviroment variables.
+ *
+ *    Return:   - 0 on completion.
  *
  * |----------------- Written by Daniel Cortes -----------------|
  * |--------------------- and Diego Lopez ----------------------|

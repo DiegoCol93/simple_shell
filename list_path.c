@@ -5,6 +5,7 @@
  *
  *  Arguments:
  *    @name:    - Pointer to name of env variable.
+ *    @env:     - Pointer to the enviroment variables.
  *
  *   Return:  - on success, pointer to value of env variable. NULL for fail.
  *
