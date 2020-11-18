@@ -12,22 +12,23 @@
  * |-------------------------- and Diego Lopez ---------------------------|
  * |-------------------------- November 14 2020 --------------------------|
  */
-list_t *list_path(const char *name)
+list_t *list_path(const char *name, char **env)
 {
 	int i;
-	char *value, **directories;
+	char *value = NULL, *value_2 = NULL, **directories = NULL;
 	list_t *head;
 
 	head = NULL;
-	value = _getenv(name, NULL);
-	directories = divide_string(value, ":");
+	value = _getenv(name, env);
+	value_2 = _strdup(value);
+	directories = divide_string(value_2, ":");
 	for (i = 0; directories[i]; i++)
 	{
 		add_node_end(&head, directories[i]);
 		free(directories[i]);
 	}
-	free(value);
 	free(directories);
-	print_list(head);
+	free(value_2);
+	/*print_list(head);*/
 	return (head);
 }

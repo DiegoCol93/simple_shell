@@ -1,4 +1,5 @@
 #include "holberton.h"
+
 /**
  * divide_string - Function that splits a string into words,
  *                 using the space character as a divider

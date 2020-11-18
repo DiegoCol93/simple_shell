@@ -11,34 +11,40 @@
  * |--------------------- and Diego Lopez ----------------------|
  * |-------------------- November 12 2020 ----------------------|
  */
-int execute(char **argv)
+int execute(char **argv, char **env)
 {
 	pid_t pid;
+	char *path_name;
 
-	/*Fork a child process.*/
-	pid = fork();
-	if (pid < 0)
+	path_name = _which(argv[0], env);
+	if (path_name)
 	{
-		perror("Error");
+		/*Fork a child process.*/
+		pid = fork();
+		if (pid < 0)
+		{
+			perror("Error");
+			free_exec(argv);
+			return (1);
+		}
+		/*Child process*/
+		else if (pid == 0)
+		{
+			execve(path_name, argv, NULL);
+			perror("./hsh");
+			free_exec(argv);
+			exit(EXIT_FAILURE);
+		}
+		/*Parent Process*/
+		else
+		{
+			wait(NULL);
+		}
 		free_exec(argv);
-		return (1);
 	}
-	/*Child process*/
-	else if (pid == 0)
-	{
-		execve(argv[0], argv, NULL);
-		perror("./hsh");
-		free_exec(argv);
-		exit(EXIT_FAILURE);
-	}
-	/*Parent Process*/
-	else
-	{
-		wait(NULL);
-	}
-	free_exec(argv);
 	return (0);
 }
+
 /**
  * free_exec    - Creates the processes for executing a program.
  *

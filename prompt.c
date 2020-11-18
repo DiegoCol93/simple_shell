@@ -10,12 +10,15 @@
  * |--------------------- and Diego Lopez ----------------------|
  * |-------------------- November 12 2020 ----------------------|
  */
-int main(void)
+int main(int ac, char **av, char **env)
 {
 	char *buffer = NULL;
 	size_t len = 0;
 	int bytes = 0;
 	char **arguments;
+
+	(void)ac;
+	(void)av;
 
 	if (isatty(STDIN_FILENO) > 0)
 		write(STDOUT_FILENO, "$ ", 2);
@@ -26,7 +29,7 @@ int main(void)
 			break;
 		buffer[bytes - 1] = '\0';
 		arguments = divide_string(buffer, " ");
-		execute(arguments);
+		execute(arguments, env);
 		if (isatty(STDIN_FILENO) > 0)
 			write(STDOUT_FILENO, "$ ", 2);
 	}

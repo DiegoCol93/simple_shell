@@ -17,11 +17,10 @@
 char *_getenv(const char *name, char **env)
 {
 	unsigned int i, j;
-/*	extern char **environ; Not usable due to Betty restrictions. */
+	/*extern char **environ; Betty doesn't accept extern variable*/
 	char *env_value = NULL;
 	int equal;
 
-	i = 0;
 	for (i = 0; env[i] != NULL; i++) /* Runs through env variables */
 	{
 		for (j = 0; env[i][j] != '='; j++)

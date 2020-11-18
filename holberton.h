@@ -28,7 +28,7 @@ typedef struct list_s
 char *_strdup(char *str);
 
 /* Executes a program. */
-int execute(char **argv);
+int execute(char **argv, char **env);
 
 /* Function that divides a string into an arraw of word. */
 char **divide_string(char *str, const char *delim);
@@ -46,7 +46,7 @@ void print_path(char *name);
 list_t *add_node_end(list_t **head, const char *str);
 
 /* Function that builds a linked list of the PATH directories. */
-list_t *list_path(const char *name);
+list_t *list_path(const char *name, char **env);
 
 /* Function that print a linked list. */
 size_t print_list(const list_t *h);
@@ -56,5 +56,8 @@ void free_list(list_t *head);
 
 /* Function that frees a child execution. */
 void free_exec(char **argv);
+
+/*Function that looks for files in the current PATH*/
+char *_which(char *filename, char **env);
 
 #endif /*FILE_H*/
