@@ -10,6 +10,16 @@
  *    @env:     - Pointer to the enviroment variables.
  *
  *    Return:   - 0 on completion.
+ *      ______   __   __    __   ______  __       ______
+ *     /\  ___\ /\ \ /\ "-./  \ /\  == \/\ \     /\  ___\
+ *     \ \___  \\ \ \\ \ \-./\ \\ \  _-/\ \ \____\ \  __\
+ *      \/\_____\\ \_\\ \_\ \ \_\\ \_\   \ \_____\\ \_____\
+ *       \/_____/ \/_/ \/_/  \/_/ \/_/    \/_____/ \/_____/
+ *             ______   __  __   ______   __       __
+ *            /\  ___\ /\ \_\ \ /\  ___\ /\ \     /\ \
+ *            \ \___  \\ \  __ \\ \  __\ \ \ \____\ \ \____
+ *             \/\_____\\ \_\ \_\\ \_____\\ \_____\\ \_____\
+ *              \/_____/ \/_/\/_/ \/_____/ \/_____/ \/_____/
  *
  * |----------------- Written by Daniel Cortes -----------------|
  * |--------------------- and Diego Lopez ----------------------|
@@ -34,7 +44,7 @@ int main(int ac, char **av, char **env)
 			break;
 		buffer[bytes - 1] = '\0'; /* Set null character at end. */
 		arguments_b = divide_string(buffer, " "); /* Tokenize string. */
-		built = get_built_in(arguments_b, env); /* Get builtin function*/
+		built = get_built_in(arguments_b, env); /* Get builtin functions. */
 		arguments_e = divide_string(buffer, " "); /* Tokenize string. */
 		if (built == -1)
 			execute(arguments_e, env); /* Execute the commands. */
