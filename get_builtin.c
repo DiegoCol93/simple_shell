@@ -25,7 +25,7 @@ int get_built_in(char **argument, char **env)
 		{"env", print_env},
 		{NULL, NULL}
 	};
-	if (argument)
+	if (argument && argument[0])
 	{
 		for (i = 0; built[i].str; i++)
 		{

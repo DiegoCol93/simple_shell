@@ -43,7 +43,11 @@ char *_which(char *filename, char **env)
 				ptr[j] = directory[j];
 			ptr[j] = '/';
 			for (k = 0; filename[k]; k++)
+			{
+				if (filename[0] == '/')
+					return(NULL);
 				ptr[j + k + 1] = filename[k];
+			}
 			ptr[j + k + 1] = '\0';
 			if (stat(ptr, &st) == 0)
 			{

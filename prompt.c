@@ -47,7 +47,7 @@ int main(int ac, char **av, char **env)
 		built = get_built_in(arguments_b, env); /* Get builtin functions. */
 		arguments_e = divide_string(buffer, " "); /* Tokenize string. */
 		if (built == -1)
-			execute(arguments_e, env); /* Execute the commands. */
+			execute(arguments_e, env); /*Execute the commands. */
 		if (isatty(STDIN_FILENO) > 0) /* Manages non-interactive use. */
 			write(STDOUT_FILENO, "$ ", 2); /* Writes prompt. */
 	}
