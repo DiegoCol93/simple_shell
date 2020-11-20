@@ -23,8 +23,6 @@ char *_which(char *filename, char **env)
 	char *directory = NULL, *ptr = NULL;
 	struct stat st;
 
-	if (stat(filename, &st) == 0)
-		return (filename);
 	head = list_path("PATH", env);
 	tmp = head;
 	if (tmp)
@@ -33,22 +31,18 @@ char *_which(char *filename, char **env)
 		{
 			directory = tmp->str;
 			for (j = 0; directory[j]; j++)
-			{};
+			{}; /* Length of path. */
 			for (k = 0 ; filename[k]; k++)
-			{};
+			{}; /* Length of command. */
 			ptr = malloc(sizeof(char) * (k + j + 2));
 			if (!ptr)
 				return (NULL);
-			for (j = 0; directory[j]; j++)
+			for (j = 0; directory[j]; j++) /* For Writing dir. */
 				ptr[j] = directory[j];
-			ptr[j] = '/';
+			ptr[j] = '/'; /* For writing '/' */
 			for (k = 0; filename[k]; k++)
-			{
-				if (filename[0] == '/')
-					return(NULL);
-				ptr[j + k + 1] = filename[k];
-			}
-			ptr[j + k + 1] = '\0';
+				ptr[j + k + 1] = filename[k]; /* for writing command  */
+			ptr[j + k + 1] = '\0'; /* For writing NULL */
 			if (stat(ptr, &st) == 0)
 			{
 				free_list(head);

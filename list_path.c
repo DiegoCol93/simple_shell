@@ -22,14 +22,17 @@ list_t *list_path(const char *name, char **env)
 	head = NULL;
 	value = _getenv(name, env);
 	value_2 = _strdup(value);
+	if (value_2[0] == ':')
+		value_2[0] = '\0';
 	directories = divide_string(value_2, ":");
 	for (i = 0; directories[i]; i++)
-	{
-		add_node_end(&head, directories[i]);
-		free(directories[i]);
-	}
+		if (directories[i])
+		{
+			add_node_end(&head, directories[i]);
+			free(directories[i]);
+		}
 	free(directories);
 	free(value_2);
-	/*print_list(head);*/
+/*	print_list(head);    */
 	return (head);
 }

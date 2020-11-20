@@ -17,7 +17,7 @@
 char *_getenv(const char *name, char **env)
 {
 	unsigned int i, j;
-	/*extern char **environ; Betty doesn't accept extern variable*/
+	/* extern char **environ; Betty doesn't accept extern variable */
 	char *env_value = NULL;
 	int equal;
 

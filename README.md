@@ -12,9 +12,9 @@
 * [License](#license)
 
 ## Description
-simple_shell is a command line interpreter, or shell, in the tradition of the first Unix shell written by Ken Thompson in 1971. Remember that it is the command interpretor in an operating system such as Unix or **Linux**, it executes other programs. It provides a computer user an interface to the Unix or **Linux** system, so that the user can run different commands or utilities/tools with some input data. 
+simple_shell is a command line interpreter, or shell, in the tradition of the first Unix shell written by Ken Thompson in 1971. Remember that it is the command interpretor in an operating system such as Unix or **Linux**, it executes other programs. It provides a computer user an interface to the Unix or **Linux** system, so that the user can run different commands or utilities/tools with some input data.
 
-So, this is really our mini shell, it  is intentionally minimalistic, but it is very reliable. Yet includes the basic functionality of a traditional Unix-like command line user interface, but we are working to improve it and to add more functionalities.   
+So, this is really our mini shell, it  is intentionally minimalistic, but it is very reliable. Yet includes the basic functionality of a traditional Unix-like command line user interface, but we are working to improve it and to add more functionalities.
 
 Standard C functions  and system calls employed for this simple_shell:
  `execve, exit, fork, free, stat, getline, malloc, perror, signal, stat, wait, write.`
@@ -88,4 +88,4 @@ Diego Lopez | [GitHub](https://github.com/DiegoCol93) | [Twitter](https://twitte
 Daniel Cortes | [GitHub](https://github.com/el-dani-cortes) | [Twitter](https://twitter.com/El_Dani_Cortes)
 
 ## License
-This simple_shell is open source and therefore free to download and use without permission. Feel free to contribute to this repo. 
+This simple_shell is open source and therefore free to download and use without permission. Feel free to contribute to this repo.
