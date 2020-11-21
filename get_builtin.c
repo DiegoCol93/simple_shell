@@ -6,7 +6,10 @@
  *  Arguments:
  *  @argument:  - Pointer to array of strings with the tokens
  *                for the command used and its arguments.
+ *
  *     @env:    - Pointer to the enviroment variables.
+ *
+ *   @buffer:   - Pointer to buffer of commands.
  *
  *    Return:   - On success executes the built-in function,
  *                if the function was not found returns -1.
@@ -16,7 +19,7 @@
  * |------------------- November 18 2020 ---------------------|
  *
  */
-int get_built_in(char **argument, char **env)
+int get_built_in(char **argument, char **env, char *buffer)
 {
 	int i, j, equal;
 	int (*f)();
@@ -37,7 +40,7 @@ int get_built_in(char **argument, char **env)
 				if (i == 0) /* Call for exit function. */
 				{
 					free_exec(argument);
-					f();
+					f(buffer);
 				}
 				if (i == 1) /* Call for env function. */
 				{

@@ -9,6 +9,7 @@
 #include <sys/stat.h>
 #include <sys/wait.h>
 #include <fcntl.h>
+#include <signal.h>
 
 /**
  * struct built_in_s - Structure to save the built_in functions.
@@ -79,11 +80,15 @@ void free_exec(char **argv);
 char *_which(char *filename, char **env);
 
 /* Function to get the correct built-in being called. */
-int get_built_in(char **arguments, char **env);
+int get_built_in(char **arguments, char **env, char *buffer);
 
 /* Exit function to cause normal exit of the program. */
-int exit_shell(void);
+int exit_shell(char *buffer);
 
 /* Function to print the enviroment variables. */
 int print_env(char **env);
+
+/* Function to handle the ctrl + C event, ^C */
+void ctrl_C(int n);
+
 #endif /*FILE_H*/

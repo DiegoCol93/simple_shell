@@ -37,6 +37,7 @@ int main(int ac, char **av, char **env)
 
 	if (isatty(STDIN_FILENO) > 0) /* Manages non-interactive use. */
 		write(STDOUT_FILENO, "$ ", 2); /* Writes the prompt */
+	signal(SIGINT, ctrl_C);
 	while (1)
 	{
 		bytes = getline(&buffer, &len, stdin); /* Get line as input. */
@@ -44,7 +45,7 @@ int main(int ac, char **av, char **env)
 			break;
 		buffer[bytes - 1] = '\0'; /* Set null character at end. */
 		arguments_b = divide_string(buffer, " "); /* Tokenize string. */
-		built = get_built_in(arguments_b, env); /* Get builtin functions. */
+		built = get_built_in(arguments_b, env, buffer); /* Get builtin functions. */
 		arguments_e = divide_string(buffer, " "); /* Tokenize string. */
 		if (built == -1)
 			execute(arguments_e, env); /*Execute the commands. */
