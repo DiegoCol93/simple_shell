@@ -1,23 +1,36 @@
 #include "holberton.h"
-#define BUFSIZE 1024
-
+/**
+ * _getline - Function to get the input of the user from stdin.
+ *
+ *  Return: - Pointer to a string stored in *buffer taken
+ *            from stdin.
+ *
+ * |--------------- Written by Daniel Cortes ----------------|
+ * |------------------- and Diego Lopez ---------------------|
+ * |-------------------- November 2020 ----------------------|
+ */
 char *_getline(void)
 {
 	int position = 0;
 	int c;
-	char *buffer = malloc(sizeof(char) * BUFSIZE);
+	char *buffer = malloc(sizeof(char) * BUFSIZ);
 
 	if (!buffer)
 	{
 		perror("lsh");
 		exit(EXIT_FAILURE);
 	}
-	while ((c = _getchar())) /*read a character, calls for another function*/
+	while ((c = _getchar())) /* Read a character */
 	{
 		/* If we hit EOF, replace it with a null character and return.*/
-		if (c == EOF || c == '\n')
+		if (c == EOF)
 		{
 			buffer[position] = '\0';
+			return (buffer);
+		}
+		if (c == '\n')
+		{
+			buffer[position] = '\n';
 			return (buffer);
 		}
 		else

@@ -1,14 +1,25 @@
 #include "holberton.h"
-
-/* getchar: simple buffered version */
+/**
+ * _getchar - Function to read a character from stdin, simple buffered version.
+ *
+ *  Return: - Pointer to the current character being stored or
+ *            EOF when all characters were read, when n = 0.
+ *
+ * |----------------------- Written by Daniel Cortes ------------------------|
+ * |--------------------------- and Diego Lopez -----------------------------|
+ * |---------------------------- November 2020 ------------------------------|
+ */
 int _getchar(void)
 {
 	static char buf[BUFSIZ];
 	static char *bufp = buf;
-	static int n = 0;
-	if (n == 0) { /* buffer is empty */
-		n = read(0, buf, sizeof buf);
+	static int n;
+
+	n = 0;
+	if (n == 0) /* buffer is empty */
+	{
+		n = read(STDIN_FILENO, buf, sizeof(buf));
 		bufp = buf;
 	}
-	return (--n >= 0) ? (unsigned char) *bufp++ : EOF;
+	return ((--n >= 0) ? (unsigned char)*bufp++ : EOF);
 }
