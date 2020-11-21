@@ -91,4 +91,10 @@ int print_env(char **env);
 /* Function to handle the ctrl + C event, ^C */
 void ctrl_C(int n);
 
+/*Function that sustitute the getline function*/
+char *_getline(void);
+
+/*Function that get the line from the prompt*/
+int _getchar(void);
+
 #endif /*FILE_H*/
