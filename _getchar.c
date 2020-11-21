@@ -15,7 +15,6 @@ int _getchar(void)
 	static char *bufp = buf;
 	static int n;
 
-	n = 0;
 	if (n == 0) /* buffer is empty */
 	{
 		n = read(STDIN_FILENO, buf, sizeof(buf));
