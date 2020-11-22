@@ -14,5 +14,5 @@
 int exit_shell(char *buffer)
 {
 	free(buffer);
-	exit(EXIT_SUCCESS);
+	_exit(EXIT_SUCCESS);
 }

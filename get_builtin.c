@@ -21,15 +21,15 @@
  */
 int get_built_in(char **argument, char **env, char *buffer)
 {
-	int i, j, equal;
+	int i, j, equal = 0;
 	int (*f)();
 	built_in_t built[] = {
 		{"exit", exit_shell},
 		{"env", print_env},
 		{NULL, NULL}
 	};
-	if (argument && argument[0])
-	{
+	if (argument && argument[0] && argument[0][0] != '/')
+	{ /* If argument and first argument exist, AND does not have a / char. */
 		for (i = 0; built[i].str; i++)
 		{
 			for (j = 0; argument[0][j]; j++)

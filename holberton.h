@@ -10,6 +10,7 @@
 #include <sys/wait.h>
 #include <fcntl.h>
 #include <signal.h>
+#include <errno.h>
 
 /**
  * struct built_in_s - Structure to save the built_in functions.
@@ -47,7 +48,7 @@ typedef struct list_s
 char *_strdup(char *str);
 
 /* Executes a program. */
-int execute(char **argv, char **env);
+int execute(unsigned int command_Num, char **argv, char **env);
 
 /* Function that divides a string into an arraw of word. */
 char **divide_string(char *str, const char *delim);

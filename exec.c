@@ -12,11 +12,11 @@
  * |--------------------- and Diego Lopez ----------------------|
  * |-------------------- November 12 2020 ----------------------|
  */
-int execute(char **argv, char **env)
+int execute(unsigned int command_Num, char **argv, char **env)
 {
-	pid_t pid;
 	char *path_name = NULL;
 	struct stat st;
+	pid_t pid;
 
 	if (argv && argv[0])
 	{
@@ -34,17 +34,19 @@ int execute(char **argv, char **env)
 			if (argv[0][0] == '/')
 			{
 				execve(argv[0], argv, env);
-				printf("Path not found\n");
-				exit(EXIT_FAILURE);
+				fprintf(stderr, "./hsh: %d: %s: not found\n", command_Num, argv[0]);
+				printf("%d\n", errno);
+				exit(127);
 			}
 			path_name = _which(argv[0], env);
 			if ((execve(path_name, argv, env)) == -1)
 			{
 				execve(argv[0], argv, env);
 			}
-			perror("./hsh");
+			fprintf(stderr, "./hsh: %d: %s: not found\n", command_Num, argv[0]);
+			printf("%d\n", errno);
 			free_exec(argv);
-			exit(EXIT_FAILURE);
+			exit(127);
 		}
 		/*Parent Process*/
 		else
