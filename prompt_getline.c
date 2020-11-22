@@ -28,9 +28,8 @@
 int main(int ac, char **av, char **env)
 {
 	char *buffer = NULL;
-	int built = 0;
 	char **arguments_e = NULL, **arguments_b = NULL;
-	int i = 0;
+	int i = 0, built = 0;
 
 	(void)ac;
 	(void)av;
@@ -50,9 +49,12 @@ int main(int ac, char **av, char **env)
 				buffer[i] = '\0';
 		arguments_b = divide_string(buffer, " "); /* Tokenize string. */
 		built = get_built_in(arguments_b, env, buffer); /* Get builtin functions. */
+		printf("???\n");
+		printf("%d\n", built);
 		arguments_e = divide_string(buffer, " "); /* Tokenize string. */
 		if (built == -1)
 			execute(arguments_e, env); /*Execute the commands. */
+		free(buffer);
 	}
 	if (isatty(STDIN_FILENO) > 0) /* Manages non-interactive use. */
 		write(STDOUT_FILENO, "\n", 2); /* Newline after ending. */

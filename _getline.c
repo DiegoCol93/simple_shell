@@ -11,13 +11,13 @@
  */
 char *_getline(void)
 {
-	int position = 0;
-	int c;
-	char *buffer = malloc(sizeof(char) * BUFSIZ);
+	char *buffer = NULL, *cp_buff = NULL;
+	int position = 0, c = 0;
 
+	buffer = calloc(BUFSIZ ,(sizeof(char) * BUFSIZ));
 	if (!buffer)
 	{
-		perror("lsh");
+		perror("./hsh");
 		exit(EXIT_FAILURE);
 	}
 	while ((c = _getchar())) /* Read a character */
@@ -26,12 +26,16 @@ char *_getline(void)
 		if (c == EOF)
 		{
 			buffer[position] = '\0';
-			return (buffer);
+			cp_buff = _strdup(buffer);
+			free(buffer);
+			return (cp_buff);
 		}
 		if (c == '\n')
 		{
 			buffer[position] = '\n';
-			return (buffer);
+			cp_buff = _strdup(buffer);
+			free(buffer);
+			return (cp_buff);
 		}
 		else
 		{

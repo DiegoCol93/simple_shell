@@ -31,6 +31,12 @@ int execute(char **argv, char **env)
 		/*Child process*/
 		else if (pid == 0)
 		{
+			if (argv[0][0] == '/')
+			{
+				execve(argv[0], argv, env);
+				printf("Path not found\n");
+				exit(EXIT_FAILURE);
+			}
 			path_name = _which(argv[0], env);
 			if ((execve(path_name, argv, env)) == -1)
 			{
