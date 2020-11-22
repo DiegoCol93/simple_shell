@@ -44,8 +44,8 @@ int get_built_in(char **argument, char **env, char *buffer)
 				}
 				if (i == 1) /* Call for env function. */
 				{
-					printf("???\n");
 					f(env);
+					return(0);
 				}
 			}
 		}

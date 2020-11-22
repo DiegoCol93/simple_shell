@@ -49,8 +49,6 @@ int main(int ac, char **av, char **env)
 				buffer[i] = '\0';
 		arguments_b = divide_string(buffer, " "); /* Tokenize string. */
 		built = get_built_in(arguments_b, env, buffer); /* Get builtin functions. */
-		printf("???\n");
-		printf("%d\n", built);
 		arguments_e = divide_string(buffer, " "); /* Tokenize string. */
 		if (built == -1)
 			execute(arguments_e, env); /*Execute the commands. */
