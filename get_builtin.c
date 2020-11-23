@@ -1,4 +1,5 @@
 #include "holberton.h"
+
 /**
  * get_built_in - Gets the correct built-in function called by
  *                the command prompt.
@@ -21,19 +22,19 @@
  */
 int get_built_in(char **argument, char **env, char *buffer)
 {
-	int i, j, equal = 0;
+	int i, equal = 0;
 	int (*f)();
 	built_in_t built[] = {
 		{"exit", exit_shell},
 		{"env", print_env},
 		{NULL, NULL}
 	};
-	if (argument && argument[0] && argument[0][0] != '/')
-	{ /* If argument and first argument exist, AND does not have a / char. */
+	if (argument && argument[0])
+	{
 		for (i = 0; built[i].str; i++)
 		{
-			for (j = 0; argument[0][j]; j++)
-				equal = argument[0][j] - built[i].str[j];
+			/*Compare argument with structure string*/
+			equal = _strcmp(argument[0], built[i].str);
 			if (equal == 0)
 			{
 				f = built[i].f;
@@ -44,8 +45,10 @@ int get_built_in(char **argument, char **env, char *buffer)
 				}
 				if (i == 1) /* Call for env function. */
 				{
+					free_exec(argument);
 					f(env);
-					return(0);
+					free(buffer);
+					return (0);
 				}
 			}
 		}

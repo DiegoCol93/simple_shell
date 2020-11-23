@@ -27,43 +27,37 @@
  */
 int main(int ac, char **av, char **env)
 {
-	char *buffer = NULL, *prompt ="\033[38;5;39m$ | \033[0m";
+	char *buffer = NULL, *prompt = "\033[38;5;39m$ | \033[0m";
 	char **arguments_e = NULL, **arguments_b = NULL;
 	int i = 0, built = 0;
 	static int command_Num = 1;
 
 	(void)ac;
 	(void)av;
-
 	signal(SIGINT, ctrl_C);
 	while (1)
 	{
 		if (isatty(STDIN_FILENO) > 0) /* Manages non-interactive use. */
 			write(STDOUT_FILENO, prompt, 18); /* Writes the prompt */
 		buffer = _getline(); /* Custom get line function. */
-/*		printf("buffer prompt after getline: %s\n", buffer);*/
 		if (buffer[0] == '\n')
+		{
+			free(buffer);
 			continue; /* If newline found continue. */
+		}
 		if (buffer[0] == '\0')
 			break; /* If null found break. */
-/*		printf("buffer-prompt,after ifs: %s\n", buffer);*/
 		for (i = 0; buffer[i]; i++)
 			if (buffer[i] == '\n') /* Change newline for null */
 				buffer[i] = '\0';
-/*		printf("buffer-prompt,after newline to null: %s\n", buffer);*/
 		arguments_b = divide_string(buffer, " "); /* Tokenize string. */
-/*		printf("buffer-prompt,after divide string Builtin: %s\n", buffer);*/
-/*		printf("---->arguments_b-prompt,after divide string: %s\n", arguments_b[0]);*/
 		built = get_built_in(arguments_b, env, buffer); /* Get builtin functions. */
-/*		printf("---->built ,after builtin: %d\n", built);*/
-/*		printf("---->buffer-prompt,after builtin: %s\n", buffer);*/
-		arguments_e = divide_string(buffer, " "); /* Tokenize string. */
-/*		printf("buffer-prompt,after divide string Exec: %s\n", buffer);*/
-/*		printf("arguments_e[0]-prompt,after divide string: %s\n", arguments_e[0]);*/
 		if (built == -1)
+		{
+			arguments_e = divide_string(buffer, " "); /* Tokenize string. */
+			free(buffer);
 			execute(command_Num, arguments_e, env); /*Execute the commands. */
-/* 		printf("buffer-prompt,after Exec, before free: %s\n", buffer);*/
-		free(buffer);
+		}
 		command_Num++;
 	}
 	if (isatty(STDIN_FILENO) > 0) /* Manages non-interactive use. */

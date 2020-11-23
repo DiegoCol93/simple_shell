@@ -98,4 +98,16 @@ char *_getline(void);
 /* Function that get the line from the prompt*/
 int _getchar(void);
 
+/*Function that allocates memory for an array*/
+void *_calloc(unsigned int nmemb, unsigned int size);
+
+/*Function to manage execve errors*/
+void err_exec(char **argv, unsigned int command_Num);
+
+/*Function to print a number*/
+void _itoa(unsigned int number);
+
+/*Function to manage child process for executing a program*/
+void child_process(char **argv, char **env, unsigned int command_Num);
+
 #endif /*FILE_H*/

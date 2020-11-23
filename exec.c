@@ -3,8 +3,9 @@
  * execute      - Creates the processes for executing a program.
  *
  * Arguments:
- *   @argv:     - Pointer to array of arguments.
- *    @env:     - Pointer to the enviroment variables.
+ *           @argv:     - Pointer to array of arguments.
+ *            @env:     - Pointer to the enviroment variables.
+ *    @command_Num:     - Number to count commands input.
  *
  *   Return:    - 0 on success.
  *
@@ -14,9 +15,8 @@
  */
 int execute(unsigned int command_Num, char **argv, char **env)
 {
-	char *path_name = NULL;
-	struct stat st;
 	pid_t pid;
+	(void)command_Num;
 
 	if (argv && argv[0])
 	{
@@ -24,38 +24,57 @@ int execute(unsigned int command_Num, char **argv, char **env)
 		pid = fork();
 		if (pid < 0)
 		{
-			perror("Error");
+			perror("Fork");
 			free_exec(argv);
 			return (1);
 		}
 		/*Child process*/
 		else if (pid == 0)
-		{
-			if (argv[0][0] == '/')
-			{
-				execve(argv[0], argv, env);
-				fprintf(stderr, "./hsh: %d: %s: not found\n", command_Num, argv[0]);
-				printf("%d\n", errno);
-				exit(127);
-			}
-			path_name = _which(argv[0], env);
-			if ((execve(path_name, argv, env)) == -1)
-			{
-				execve(argv[0], argv, env);
-			}
-			fprintf(stderr, "./hsh: %d: %s: not found\n", command_Num, argv[0]);
-			printf("%d\n", errno);
-			free_exec(argv);
-			exit(127);
-		}
+			child_process(argv, env, command_Num);
 		/*Parent Process*/
 		else
 		{
-			wait(NULL);
-			if (stat(argv[0], &st) != 0)
-				free(path_name);
+			if (wait(NULL) < 0)
+				perror("Wait");
 		}
 	}
 	free_exec(argv);
 	return (0);
+}
+/**
+ * child_process        - Manage the child process for executing a program.
+ *
+ * Arguments:
+ *           @argv:     - Pointer to array of arguments.
+ *            @env:     - Pointer to the enviroment variables.
+ *    @command_Num:     - Number to count commands input.
+ *
+ *
+ *
+ *
+ * |----------------- Written by Daniel Cortes -----------------|
+ * |--------------------- and Diego Lopez ----------------------|
+ * |-------------------- November 12 2020 ----------------------|
+ */
+void child_process(char **argv, char **env, unsigned int command_Num)
+{
+/*	struct stat st; */
+	char *path_name = NULL;
+
+	if (argv[0][0] == '/')
+	{
+		execve(argv[0], argv, env);
+		err_exec(argv, command_Num);
+	}
+	path_name = _which(argv[0], env);
+	if (path_name)
+	{
+		if ((execve(path_name, argv, env)) == -1)
+		{
+			execve(argv[0], argv, env);
+		}
+	}
+	err_exec(argv, command_Num);
+/*	if (stat(argv[0], &st))*/
+/*		free(path_name);*/
 }

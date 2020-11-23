@@ -55,16 +55,3 @@ char *_which(char *filename, char **env)
 	free_list(head);
 	return (NULL);
 }
-/**
- *main - test to print if this function worked.
- *int main(int ac, char **av, char **env)
- *{
- *	char *path_name;
- *	(void)ac;
- *	(void)av;
- *
- *	path_name = _which(av[1], env);
- *	printf("%s\n", path_name);
- *	return (0);
- *}
- */

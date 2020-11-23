@@ -14,7 +14,7 @@ char *_getline(void)
 	char *buffer = NULL, *cp_buff = NULL;
 	int position = 0, c = 0;
 
-	buffer = calloc(BUFSIZ ,(sizeof(char) * BUFSIZ));
+	buffer = _calloc(BUFSIZ, sizeof(char));
 	if (!buffer)
 	{
 		perror("./hsh");

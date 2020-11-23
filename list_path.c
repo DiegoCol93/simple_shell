@@ -16,15 +16,31 @@
 list_t *list_path(const char *name, char **env)
 {
 	int i;
-	char *value = NULL, *value_2 = NULL, **directories = NULL;
-	list_t *head;
+	char *value = NULL, *value_2 = NULL, **directories = NULL, *ptr = NULL;
+	list_t *head = NULL;
 
-	head = NULL;
 	value = _getenv(name, env);
 	value_2 = _strdup(value);
 	if (value_2[0] == ':')
-		value_2[0] = '\0';
-	directories = divide_string(value_2, ":");
+	{
+		for (i = 0; value_2[i]; i++)
+		{}
+		ptr = malloc(sizeof(char) * i + 2);
+		if (ptr == NULL)
+			return (NULL);
+		for (i = 0; value_2[i]; i++)
+		{
+			ptr[0] = '.';
+			ptr[i + 1] = value_2[i];
+		}
+		directories = divide_string(ptr, ":");
+		free(ptr);
+	}
+	else
+	{
+		directories = divide_string(value_2, ":");
+		free(value_2);
+	}
 	for (i = 0; directories[i]; i++)
 		if (directories[i])
 		{
@@ -32,7 +48,6 @@ list_t *list_path(const char *name, char **env)
 			free(directories[i]);
 		}
 	free(directories);
-	free(value_2);
 /*	print_list(head);    */
 	return (head);
 }
