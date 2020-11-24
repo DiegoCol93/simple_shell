@@ -48,7 +48,7 @@ int get_built_in(char **args_Bu, char **env, char *buffer)
 					free_exec(args_Bu);
 					f(env);
 					free(buffer);
-					return (0);
+					return (-2);
 				}
 			}
 		}

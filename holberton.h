@@ -66,7 +66,7 @@ char *_strdup(char *str);
 int _strcmp(const char *s1, const char *s2);
 
 /* Function that looks for files in the current PATH. */
-char *_which(char *filename, char **env);
+char *_which(char **args_Ex, char **env);
 
 /* Function to print a number as characters, on the STDERR */
 void _itoa_err(unsigned int number);
@@ -76,6 +76,12 @@ int _atoi(char *s);
 
 /* Function that divides a string into an arraw of word. */
 char **divide_string(char *str, const char *delim);
+
+/* Function that looks for files in the PATH. */
+char *cat_path(char **args_Ex, char **env);
+
+/* Function that looks for a file in the PWD. */
+char *check_cwd(char *filename, char **env);
 
 
 /* - - - - - - - - - - - Memory manupulation functions. - - - - - - - - - - */

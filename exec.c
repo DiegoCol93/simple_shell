@@ -76,7 +76,7 @@ void child_Ex(char **args_Ex, char **env, unsigned int cmd_Num, char *prg_name)
 		err_not_found(args_Ex, cmd_Num, prg_name);
 		exit(127);
 	}
-	path_name = _which(args_Ex[0], env);
+	path_name = _which(args_Ex, env);
 	if (path_name)
 	{
 		if ((execve(path_name, args_Ex, env)) == -1)
@@ -91,8 +91,8 @@ void child_Ex(char **args_Ex, char **env, unsigned int cmd_Num, char *prg_name)
  * check_path    - Function to check for the given file name on the PATH.
  *
  *  Arguments:
- *   @args_Ex:   - Arguments of the command to be freed if not found.
- *    @cmd_N:    - Counter of the command number being run.
+ *   @arg_Ex:   - Arguments of the command to be freed if not found.
+ *    @cmd_Num:    - Counter of the command number being run.
  *    @env:      - Pointer to the eviroment variables.
  *  @prg_name:   - Name of the program used to run the shell.
  *
@@ -102,14 +102,14 @@ void child_Ex(char **args_Ex, char **env, unsigned int cmd_Num, char *prg_name)
  * |------------------------ and Diego Lopez -------------------------|
  * |----------------------- November 12 2020 -------------------------|
  */
-int check_path(char **args_Ex, unsigned int cmd_N, char **env, char *prg_name)
+int check_path(char **arg_Ex, unsigned int cmd_Num, char **env, char *prg_name)
 {
 	char *path_name = NULL;
 
-	path_name = _which(args_Ex[0], env);
+	path_name = _which(arg_Ex, env);
 	if (path_name == NULL)
 	{
-		err_not_found(args_Ex, cmd_N, prg_name);
+		err_not_found(arg_Ex, cmd_Num, prg_name);
 		return (127);
 	}
 	free(path_name);
