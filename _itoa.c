@@ -1,18 +1,18 @@
 #include "holberton.h"
 /**
- * _itoa       - Prints any number.
+ * _itoa_err   - Prints any number.
  *
- * Arguments:
+ *  Arguments:
  *   @number:  - Number to print.
  *
  *
- * Return:     - Number of digits printed.
+ *   Return:   - Number of digits printed.
  *
- * |----------------- Written by Daniel Cortes -----------------|
- * |--------------------- and Diego Lopez ----------------------|
- * |-------------------- November 12 2020 ----------------------|
+ * |------- Written by Daniel Cortes -------|
+ * |----------- and Diego Lopez ------------|
+ * |------------ November 2020 -------------|
  */
-void _itoa(unsigned int number)
+void _itoa_err(unsigned int number)
 {
 	unsigned int abs, cypher, div = 1, i, num, last, digit, abs_num;
 	char p;
@@ -30,12 +30,12 @@ void _itoa(unsigned int number)
 		{
 			last = num % 10;
 			p = last + '0';
-			write(1, &p, 1);
+			write(STDERR_FILENO, &p, 1);
 		}
 		else
 		{
 			p = num + '0';
-			write(1, &p, 1);
+			write(STDERR_FILENO, &p, 1);
 		}
 		div = div / 10;
 	}

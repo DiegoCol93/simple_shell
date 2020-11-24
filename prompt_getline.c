@@ -28,12 +28,11 @@
 int main(int ac, char **av, char **env)
 {
 	char *buffer = NULL, *prompt = "\033[38;5;39m$ | \033[0m";
-	char **arguments_e = NULL, **arguments_b = NULL;
+	char **args_Ex = NULL, **args_Bu = NULL;
 	int i = 0, built = 0, exec_res = 0;
-	static int command_Num = 1;
+	static int cmd_Num = 1;
 
 	(void)ac;
-	(void)av;
 	signal(SIGINT, ctrl_C);
 	while (1)
 	{
@@ -50,15 +49,15 @@ int main(int ac, char **av, char **env)
 		for (i = 0; buffer[i]; i++)
 			if (buffer[i] == '\n') /* Change newline for null */
 				buffer[i] = '\0';
-		arguments_b = divide_string(buffer, " "); /* Tokenize string. */
-		built = get_built_in(arguments_b, env, buffer); /* Get builtin functions. */
+		args_Bu = divide_string(buffer, " "); /* Tokenize string. */
+		built = get_built_in(args_Bu, env, buffer); /* Get builtin functions. */
 		if (built == -1)
 		{
-			arguments_e = divide_string(buffer, " "); /* Tokenize string. */
+			args_Ex = divide_string(buffer, " "); /* Tokenize string. */
 			free(buffer);/*Execute the commands. */
-			exec_res = execute(command_Num, arguments_e, env);
+			exec_res = execute(cmd_Num, args_Ex, env, av[0]);
 		}
-		command_Num++;
+		cmd_Num++;
 	}
 	if (isatty(STDIN_FILENO) > 0) /* Manages non-interactive use. */
 		write(STDOUT_FILENO, "\n", 1); /* Newline after ending. */

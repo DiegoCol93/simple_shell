@@ -1,54 +1,73 @@
 #include "holberton.h"
+
 /**
- * err_exec - Function to print the error when execve fail.
+ * err_exec - Function to print the error 127 to STDERR.
  *
- * Arguments:
- *        @argv:     - Pointer to array of arguments.
- * @command_Num:     - Number to count commands input.
+ *  Arguments:
+ *    @argv:     - Pointer to array of arguments.
+ *   @cmd_Num:   - Number to count number of commands ran so far.
+ *  @prg_name:   - Pointer to argv[0] of main function,
+ *                 The name of the program.
  *
- *  Return:          - Always 1.
- *
- * |----------------------- Written by Daniel Cortes ------------------------|
- * |--------------------------- and Diego Lopez -----------------------------|
- * |---------------------------- November 2020 ------------------------------|
+ * |----------------- Written by Daniel Cortes ------------------|
+ * |--------------------- and Diego Lopez -----------------------|
+ * |---------------------- November 2020 ------------------------|
  */
-void err_exec(char **argv, unsigned int command_Num)
+void err_exec(char **argv, unsigned int cmd_Num, char *prg_name)
 {
 	int i = 0;
 
-	write(STDERR_FILENO, "./hsh: ", 7);
-	_itoa(command_Num);
-	write(STDERR_FILENO, ": ", 2);
-	for (i = 0; argv[0][i]; i++)
+/*- - - - - - - - All writing below is directed to the STDERR - - - - - - - -*/
+
+	for (i = 0; prg_name[i]; i++) /* For getting lenght of prg_name. */
 	{}
-	write(STDERR_FILENO, argv[0], i);
-	write(STDERR_FILENO, ": not found\n", 12);
+	write(STDERR_FILENO, prg_name, i); /* Write prg_name. */
+	write(STDERR_FILENO, ": ", 2); /* Write format ": " string. */
+
+	_itoa_err(cmd_Num); /* Converts cmd # and prints it to STDERR. */
+	write(STDERR_FILENO, ": ", 2); /* Write format ": " string. */
+
+	for (i = 0; argv[0][i]; i++) /* For getting lenght of input cmd. */
+	{}
+	write(STDERR_FILENO, argv[0], i); /* Writes cmd used by user. */
+
+	write(STDERR_FILENO, ": not found\n", 12); /* Writes err msg. */
+
 	free_exec(argv);
 	exit(EXIT_FAILURE);
 }
 /**
- * err_not_found - Function to print the error 127.
+ * err_not_found - Function to print the error 127 to STDERR.
  *
- * Arguments:
- *        @argv:     - Pointer to array of arguments.
- * @command_Num:     - Number to count commands input.
+ *  Arguments:
+ *    @argv:     - Pointer to array of arguments.
+ *   @cmd_Num:   - Number to count number of commands ran so far.
+ *  @prg_name:   - Pointer to argv[0] of main function,
+ *                 The name of the program.
  *
- *
- *
- * |----------------------- Written by Daniel Cortes ------------------------|
- * |--------------------------- and Diego Lopez -----------------------------|
- * |---------------------------- November 2020 ------------------------------|
+ * |----------------- Written by Daniel Cortes ------------------|
+ * |--------------------- and Diego Lopez -----------------------|
+ * |---------------------- November 2020 ------------------------|
  */
-void err_not_found(char **argv, unsigned int command_Num)
+void err_not_found(char **argv, unsigned int cmd_Num, char *prg_name)
 {
 	int i = 0;
 
-	write(STDERR_FILENO, "./hsh: ", 7);
-	_itoa(command_Num);
-	write(STDERR_FILENO, ": ", 2);
-	for (i = 0; argv[0][i]; i++)
+/*- - - - - - - - All writing below is directed to the STDERR - - - - - - - -*/
+
+	for (i = 0; prg_name[i]; i++) /* For getting lenght of prg_name. */
 	{}
-	write(STDERR_FILENO, argv[0], i);
-	write(STDERR_FILENO, ": not found\n", 12);
+	write(STDERR_FILENO, prg_name, i); /* Write prg_name. */
+	write(STDERR_FILENO, ": ", 2); /* Write format ": " string. */
+
+	_itoa_err(cmd_Num); /* Converts cmd # and prints it to STDERR. */
+	write(STDERR_FILENO, ": ", 2); /* Write format ": " string. */
+
+	for (i = 0; argv[0][i]; i++) /* For getting lenght of input cmd. */
+	{}
+	write(STDERR_FILENO, argv[0], i); /* Writes cmd used by user. */
+
+	write(STDERR_FILENO, ": not found\n", 12); /* Writes err msg. */
+
 	free_exec(argv);
 }
