@@ -110,4 +110,7 @@ void _itoa(unsigned int number);
 /*Function to manage child process for executing a program*/
 void child_process(char **argv, char **env, unsigned int command_Num);
 
+/*Function to print error 127*/
+void err_not_found(char **argv, unsigned int command_Num);
+
 #endif /*FILE_H*/

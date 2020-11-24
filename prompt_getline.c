@@ -29,7 +29,7 @@ int main(int ac, char **av, char **env)
 {
 	char *buffer = NULL, *prompt = "\033[38;5;39m$ | \033[0m";
 	char **arguments_e = NULL, **arguments_b = NULL;
-	int i = 0, built = 0;
+	int i = 0, built = 0, exec_res = 0;
 	static int command_Num = 1;
 
 	(void)ac;
@@ -55,13 +55,15 @@ int main(int ac, char **av, char **env)
 		if (built == -1)
 		{
 			arguments_e = divide_string(buffer, " "); /* Tokenize string. */
-			free(buffer);
-			execute(command_Num, arguments_e, env); /*Execute the commands. */
+			free(buffer);/*Execute the commands. */
+			exec_res = execute(command_Num, arguments_e, env);
 		}
 		command_Num++;
 	}
 	if (isatty(STDIN_FILENO) > 0) /* Manages non-interactive use. */
 		write(STDOUT_FILENO, "\n", 1); /* Newline after ending. */
 	free(buffer);
-	return (0); /* Manage non-interactive use. */
+	if (exec_res == 127)
+		exit(127);
+	return (exec_res); /* Manage non-interactive use. */
 }

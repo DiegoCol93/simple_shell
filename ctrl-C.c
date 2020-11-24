@@ -8,5 +8,5 @@
 void ctrl_C(int n)
 {
 	(void)n;
-	write(STDOUT_FILENO, "\n\033[38;5;39m$ | \033[0m", 19);
+	write(STDOUT_FILENO, "\n\033[38;5;40m$ | \033[0m", 19);
 }
