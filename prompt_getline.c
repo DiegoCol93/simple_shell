@@ -51,6 +51,8 @@ int main(int ac, char **av, char **env)
 				buffer[i] = '\0';
 		args_Bu = divide_string(buffer, " "); /* Tokenize string. */
 		built = get_built_in(args_Bu, env, buffer); /* Get builtin functions. */
+		if (built >= 0)
+			exit(built);
 		if (built == -1)
 		{
 			args_Ex = divide_string(buffer, " "); /* Tokenize string. */
@@ -64,7 +66,5 @@ int main(int ac, char **av, char **env)
 	free(buffer);
 	if (exec_res == 127)
 		exit(127);
-	if (built != 0)
-		exit(built);
 	return (exec_res); /* Manage non-interactive use. */
 }
