@@ -5,7 +5,7 @@
  *                the command prompt.
  *
  *  Arguments:
- *  @argument:  - Pointer to array of strings with the tokens
+ *   @args_Bu:  - Pointer to array of strings with the tokens
  *                for the command used and its arguments.
  *
  *     @env:    - Pointer to the enviroment variables.
@@ -17,10 +17,10 @@
  *
  * |---------------- Written by Daniel Cortes ----------------|
  * |-------------------- and Diego Lopez ---------------------|
- * |------------------- November 18 2020 ---------------------|
+ * |--------------------- November 2020 ----------------------|
  *
  */
-int get_built_in(char **argument, char **env, char *buffer)
+int get_built_in(char **args_Bu, char **env, char *buffer)
 {
 	int i, equal = 0;
 	int (*f)();
@@ -29,23 +29,23 @@ int get_built_in(char **argument, char **env, char *buffer)
 		{"env", print_env},
 		{NULL, NULL}
 	};
-	if (argument && argument[0])
+	if (args_Bu && args_Bu[0])
 	{
 		for (i = 0; built[i].str; i++)
 		{
-			/*Compare argument with structure string*/
-			equal = _strcmp(argument[0], built[i].str);
+			/*Compare args_Bu with structure string*/
+			equal = _strcmp(args_Bu[0], built[i].str);
 			if (equal == 0)
 			{
 				f = built[i].f;
 				if (i == 0) /* Call for exit function. */
 				{
-					free_exec(argument);
-					f(buffer);
+/*					free_exec(args_Bu); free inside exit. */
+					f(buffer, args_Bu);
 				}
 				if (i == 1) /* Call for env function. */
 				{
-					free_exec(argument);
+					free_exec(args_Bu);
 					f(env);
 					free(buffer);
 					return (0);
@@ -53,6 +53,6 @@ int get_built_in(char **argument, char **env, char *buffer)
 			}
 		}
 	}
-	free_exec(argument);
+	free_exec(args_Bu);
 	return (-1);
 }

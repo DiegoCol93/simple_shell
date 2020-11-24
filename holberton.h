@@ -2,6 +2,7 @@
 #define __FILE_H_
 
 /* -------------------- ./hsh - Holberton Simple Shell --------------------- */
+/* - - - - - - - - November 2020, Diego Lopez - Daniel Cortes - - - - - - -  */
 /* -- Header file for our simple shell, please open man page for more info.- */
 
 #include <unistd.h>
@@ -67,8 +68,11 @@ int _strcmp(const char *s1, const char *s2);
 /* Function that looks for files in the current PATH. */
 char *_which(char *filename, char **env);
 
-/*Function to print a number*/
+/* Function to print a number as characters, on the STDERR */
 void _itoa_err(unsigned int number);
+
+/* Function to convert a string to an integer. */
+int _atoi(char *s);
 
 /* Function that divides a string into an arraw of word. */
 char **divide_string(char *str, const char *delim);
@@ -109,7 +113,7 @@ size_t print_list(const list_t *h);
 /* Executes a program. */
 int execute(unsigned int cmd_Num, char **args_Ex, char **env, char *prg_name);
 
-/*Function to manage child process for executing a program*/
+/* Function to manage child process for executing a program*/
 void child_Ex(char **argv, char **env, unsigned int cmd_Num, char *prg_name);
 
 /* Function to get the correct built-in being called. */
@@ -131,7 +135,7 @@ void err_not_found(char **argv, unsigned int cmd_Num, char *prg_name);
 int check_path(char **args_Ex, unsigned int cmd_N, char **env, char *prg_name);
 
 /* Exit function to cause normal exit of the program. */
-int exit_shell(char *buffer);
+int exit_shell(char *buffer, char **args_Bu);
 
 
 /* - - - - - - - - November 2020, Diego Lopez - Daniel Cortes - - - - - - - -*/

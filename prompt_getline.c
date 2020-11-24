@@ -27,7 +27,7 @@
  */
 int main(int ac, char **av, char **env)
 {
-	char *buffer = NULL, *prompt = "\033[38;5;39m$ | \033[0m";
+	char *buffer = NULL, *prompt = "\033[38;5;51m$ | \033[0m";
 	char **args_Ex = NULL, **args_Bu = NULL;
 	int i = 0, built = 0, exec_res = 0;
 	static int cmd_Num = 1;
@@ -64,5 +64,7 @@ int main(int ac, char **av, char **env)
 	free(buffer);
 	if (exec_res == 127)
 		exit(127);
+	if (built != 0)
+		exit(built);
 	return (exec_res); /* Manage non-interactive use. */
 }
