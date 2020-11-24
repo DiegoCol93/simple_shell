@@ -5,6 +5,10 @@
  * @head: head of linked list.
  *
  * Return: always nothing.
+ *
+ * |--------- Written by Daniel Cortes --------|
+ * |------------- and Diego Lopez -------------|
+ * |-------------- November 2020 --------------|
  */
 void free_list(list_t *head)
 {

@@ -21,9 +21,13 @@
  *             \/\_____\\ \_\ \_\\ \_____\\ \_____\\ \_____\
  *              \/_____/ \/_/\/_/ \/_____/ \/_____/ \/_____/
  *
+ * |------------- For important extra info please --------------|
+ * |------- open the man page in your preffered txt editor -----|
+ * |------------- and go to the comments section ---------------|
+ *
  * |----------------- Written by Daniel Cortes -----------------|
  * |--------------------- and Diego Lopez ----------------------|
- * |-------------------- November 12 2020 ----------------------|
+ * |---------------------- November 2020 -----------------------|
  */
 int main(int ac, char **av, char **env)
 {

@@ -4,6 +4,10 @@
  *
  * Arguments:
  *    @n:     - Input number from signal().
+ *
+ * |-------- Written by Daniel Cortes --------|
+ * |------------ and Diego Lopez -------------|
+ * |------------- November 2020 --------------|
  */
 void ctrl_C(int n)
 {

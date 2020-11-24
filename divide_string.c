@@ -12,7 +12,7 @@
  *
  * |-------------- Written by Daniel Cortes --------------|
  * |------------------- and Diego Lopez ------------------|
- * |---------------- November - 12 - 2020 ----------------|
+ * |-------------------- November 2020 -------------------|
  */
 char **divide_string(char *str, const char *delim)
 {

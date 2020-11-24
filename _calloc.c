@@ -11,7 +11,7 @@
  *
  * |----------------- Written by Daniel Cortes -----------------|
  * |--------------------- and Diego Lopez ----------------------|
- * |-------------------- November 12 2020 ----------------------|
+ * |---------------------- November 2020 -----------------------|
  */
 void *_calloc(unsigned int nmemb, unsigned int size)
 {

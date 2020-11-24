@@ -11,9 +11,9 @@
  *   Return:     - 0 on success or :
  *               - 127, if the executable file could not be found.
  *
- * |----------------- Written by Daniel Cortes -----------------|
- * |--------------------- and Diego Lopez ----------------------|
- * |-------------------- November 12 2020 ----------------------|
+ * |------------------ Written by Daniel Cortes -----------------|
+ * |---------------------- and Diego Lopez ----------------------|
+ * |----------------------- November 2020 -----------------------|
  */
 int execute(unsigned int cmd_Num, char **args_Ex, char **env, char *prg_name)
 {

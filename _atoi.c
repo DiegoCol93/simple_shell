@@ -1,11 +1,15 @@
 #include "holberton.h"
 
 /**
- * _atoi - Function to convert a string to an integer.
+ * _atoi    - Function to convert a string to an integer.
  *
- * @s: string to convert.
- * Return: integer
+ *   @s:    - string to convert.
  *
+ *  Return: - integer.
+ *
+ * |------------- Written by Daniel Cortes -------------|
+ * |----------------- and Diego Lopez ------------------|
+ * |------------------ November 2020 -------------------|
  */
 int _atoi(char *s)
 

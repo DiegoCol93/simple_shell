@@ -10,9 +10,9 @@
  *   Return:    - on success, pointer to value of env variable.
  *                NULL for fail.
  *
- * |----------------- Written by Daniel Cortes -----------------|
- * |--------------------- and Diego Lopez ----------------------|
- * |------------------- November - 14 / 2020 -------------------|
+ * |---------------- Written by Daniel Cortes -----------------|
+ * |--------------------- and Diego Lopez ---------------------|
+ * |---------------------- November 2020 ----------------------|
  */
 char *_getenv(const char *name, char **env)
 {

@@ -7,9 +7,9 @@
  *
  *    Return:  - EXIT_SUCCES on completion.
  *
- * |-------- Written by Daniel Cortes --------|
- * |------------ and Diego Lopez -------------|
- * |------------ November 18 2020 ------------|
+ * |---------- Written by Daniel Cortes --------|
+ * |-------------- and Diego Lopez -------------|
+ * |--------------- November 2020 --------------|
  */
 int print_env(char **env)
 {

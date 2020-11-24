@@ -5,6 +5,10 @@
  *     @h:    - head of the linked list.
  *
  *   Return:  - number of nodes in the list.
+ *
+ * |------------- Written by Daniel Cortes -------------|
+ * |----------------- and Diego Lopez ------------------|
+ * |------------------ November 2020 -------------------|
  */
 size_t print_list(const list_t *h)
 {

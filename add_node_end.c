@@ -6,6 +6,10 @@
  * @str: string to copy.
  *
  * Return: the address of the new element, or NULL if it failed.
+ *
+ * |-------------------- Written by Daniel Cortes ------------------|
+ * |-------------------------- and Diego Lopez ---------------------|
+ * |--------------------------- November 2020 ----------------------|
  */
 list_t *add_node_end(list_t **head, char *str)
 {
