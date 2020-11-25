@@ -24,7 +24,7 @@
 int get_built_in(char **args_Bu, char **env, char *buffer,
 		 unsigned int cmd_Num, char *prg_name)
 {
-	int i, equal = 0;
+	int i, equal = 0, res = 0;
 	int (*f)();
 	built_in_t built[] = {
 		{"exit", exit_shell},
@@ -43,8 +43,10 @@ int get_built_in(char **args_Bu, char **env, char *buffer,
 				if (i == 0) /* Call for exit function. */
 				{
 /*					free_exec(args_Bu); free inside exit. */
-					f(buffer, args_Bu, cmd_Num, prg_name);
-					return (-3);
+					res = f(buffer, args_Bu, cmd_Num, prg_name);
+					if (res  == 2)
+						return (-3);
+					return (res);
 				}
 				if (i == 1) /* Call for env function. */
 				{

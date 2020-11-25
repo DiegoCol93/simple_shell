@@ -26,7 +26,9 @@ int exit_shell(char *buffer, char **arg_B, unsigned int cmd_Num,
 		{
 			if (arg_B[1][i] < 48 || arg_B[1][i] > 57)
 			{
+				free(buffer);
 				err_exit(arg_B, cmd_Num, prg_name);
+				free_exec(arg_B);
 				return (2);
 			}
 			else
@@ -36,5 +38,5 @@ int exit_shell(char *buffer, char **arg_B, unsigned int cmd_Num,
 	if (arg_B)
 		free_exec(arg_B);
 	free(buffer);
-	exit(ret);
+	return (ret);
 }

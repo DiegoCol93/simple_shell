@@ -29,16 +29,15 @@
  * |--------------------- and Diego Lopez ----------------------|
  * |---------------------- November 2020 -----------------------|
  */
-int main(int ac, char **av, char **env)
+int main(__attribute__((unused))int ac, char **av, char **env)
 {
 	char *buffer = NULL, *prompt = "\033[38;5;51m$ | \033[0m";
 	char **args_Ex = NULL, **args_Bu = NULL;
 	int built = 0, exec_res = 0, i = 0;
 	static int cmd_Num = 1;
 
-	(void)ac;
 	signal(SIGINT, ctrl_C);
-	while (1)
+	for (; 1; cmd_Num++)
 	{
 		if (isatty(STDIN_FILENO) > 0) /* Manages non-interactive use. */
 			write(STDOUT_FILENO, prompt, 18); /* Writes the prompt */
@@ -54,10 +53,13 @@ int main(int ac, char **av, char **env)
 			if (buffer[i] == '\n') /* Change newline for null */
 				buffer[i] = '\0';
 		args_Bu = divide_string(buffer, " "); /* Tokenize string. */
-		/*Get builtin functions. */
 		built = get_built_in(args_Bu, env, buffer, cmd_Num, av[0]);
-		if (built >= 0)
+		if (built >= 0)/*Check for builtin returns. */
+		{
+			if (exec_res > 0)
+				exit(exec_res);
 			exit(built);
+		}
 		if (built == -1) /* If no built-in was found. */
 		{
 			args_Ex = divide_string(buffer, " "); /* Tokenize string. */
@@ -66,7 +68,6 @@ int main(int ac, char **av, char **env)
 		}
 		if (built == -3)/* If exit function received a bad argument. */
 			exec_res = 2;
-		cmd_Num++;
 	}
 	free(buffer);
 	return (ret(exec_res));
@@ -87,7 +88,6 @@ int main(int ac, char **av, char **env)
  */
 int ret(int exec_res)
 {
-
 	if (isatty(STDIN_FILENO) > 0) /* Manages non-interactive use. */
 		write(STDOUT_FILENO, "\n", 1); /* Newline after ending. */
 	if (exec_res == 127)
