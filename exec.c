@@ -67,31 +67,22 @@ int execute(unsigned int cmd_Num, char **args_Ex, char **env, char *prg_name)
  */
 void child_Ex(char **args_Ex, char **env, unsigned int cmd_Num, char *prg_name)
 {
-	struct stat st;
 	char *path_name = NULL;
 
-	if (stat(args_Ex[0], &st) == 0)
-	{
-		if (args_Ex[0][0] == '/' && S_ISREG(st.st_mode))
-		{ /* If it is a regular file execute */
-			execve(args_Ex[0], args_Ex, env);
-			err_not_found(args_Ex, cmd_Num, prg_name);
-			exit(127);
-		}
-		err_perm(args_Ex, cmd_Num, prg_name);
-		exit(126);
+	if (args_Ex[0][0] == '/') /*&& S_ISREG(st.st_mode))*/
+	{ /* If it is a regular file execute */
+		execve(args_Ex[0], args_Ex, env);
+		err_not_found(args_Ex, cmd_Num, prg_name);
+		exit(127);
 	}
+/*	err_perm(args_Ex, cmd_Num, prg_name);*/
+/*	exit(126);*/
 	else
 	{
 		path_name = _which(args_Ex, env);
-		if (path_name)
-		{
-			if ((execve(path_name, args_Ex, env)) == -1)
-			{
-				execve(args_Ex[0], args_Ex, env);
-				exit(EXIT_FAILURE);
-			}
-		}
+		execve(path_name, args_Ex, env);
+		err_not_found(args_Ex, cmd_Num, prg_name);
+		exit(EXIT_FAILURE);
 	}
 /*	if (stat(args_Ex[0], &st))*/
 /*		free(path_name);*/
