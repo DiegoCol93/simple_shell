@@ -18,7 +18,8 @@
 int exit_shell(char *buffer, char **arg_B, unsigned int cmd_Num,
 	       char *prg_name)
 {
-	int ret = 0, i = 0;
+	short unsigned int ret = 0;
+	unsigned int i = 0;
 
 	if (arg_B[1] != NULL)
 	{
