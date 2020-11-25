@@ -151,6 +151,8 @@ int exit_shell(char *buffer, char **arg_B, unsigned int cmd_Num,
 /* Function to manage exit errors */
 void err_exit(char **argv, unsigned int cmd_Num, char *prg_name);
 
+/* Function to print error 126 */
+void err_perm(char **argv, unsigned int cmd_Num, char *prg_name);
 
 
 /* - - - - - - - - November 2020, Diego Lopez - Daniel Cortes - - - - - - - -*/
