@@ -123,10 +123,14 @@ int execute(unsigned int cmd_Num, char **args_Ex, char **env, char *prg_name);
 void child_Ex(char **argv, char **env, unsigned int cmd_Num, char *prg_name);
 
 /* Function to get the correct built-in being called. */
-int get_built_in(char **arguments, char **env, char *buffer);
+int get_built_in(char **arguments, char **env, char *buffer,
+		 unsigned int cdm_Num, char *prg_name);
 
 /* Function to handle the ctrl + C event, ^C */
 void ctrl_C(int n);
+
+/*Function to manage execution returns*/
+int ret(int exec_res);
 
 
 /* - - - - - - - - - - - - Error handling functions. - - - - - - - - - - - - */
@@ -141,7 +145,12 @@ void err_not_found(char **argv, unsigned int cmd_Num, char *prg_name);
 int check_path(char **args_Ex, unsigned int cmd_N, char **env, char *prg_name);
 
 /* Exit function to cause normal exit of the program. */
-int exit_shell(char *buffer, char **args_Bu);
+int exit_shell(char *buffer, char **arg_B, unsigned int cmd_Num,
+	       char *prg_name);
+
+/* Function to manage exit errors */
+void err_exit(char **argv, unsigned int cmd_Num, char *prg_name);
+
 
 
 /* - - - - - - - - November 2020, Diego Lopez - Daniel Cortes - - - - - - - -*/

@@ -33,7 +33,7 @@ int main(int ac, char **av, char **env)
 {
 	char *buffer = NULL, *prompt = "\033[38;5;51m$ | \033[0m";
 	char **args_Ex = NULL, **args_Bu = NULL;
-	int i = 0, built = 0, exec_res = 0;
+	int built = 0, exec_res = 0, i = 0;
 	static int cmd_Num = 1;
 
 	(void)ac;
@@ -54,20 +54,42 @@ int main(int ac, char **av, char **env)
 			if (buffer[i] == '\n') /* Change newline for null */
 				buffer[i] = '\0';
 		args_Bu = divide_string(buffer, " "); /* Tokenize string. */
-		built = get_built_in(args_Bu, env, buffer); /* Get builtin functions. */
+		/*Get builtin functions. */
+		built = get_built_in(args_Bu, env, buffer, cmd_Num, av[0]);
 		if (built >= 0)
 			exit(built);
-		if (built == -1)
+		if (built == -1) /* If no built-in was found. */
 		{
 			args_Ex = divide_string(buffer, " "); /* Tokenize string. */
 			free(buffer);/*Execute the commands. */
 			exec_res = execute(cmd_Num, args_Ex, env, av[0]);
 		}
+		if (built == -3)/* If exit function received a bad argument. */
+			exec_res = 2;
 		cmd_Num++;
 	}
+	free(buffer);
+	return (ret(exec_res));
+}
+/**
+ * ret       - Function to manage execution returns.
+ *
+ *  Arguments:
+ *  @exec_res:    - Result from child or built_in execution.
+ *
+ *
+ *   Return:     - integer with execution result.
+ *
+ *
+ * |------------------ Written by Daniel Cortes -----------------|
+ * |---------------------- and Diego Lopez ----------------------|
+ * |----------------------- November 2020 -----------------------|
+ */
+int ret(int exec_res)
+{
+
 	if (isatty(STDIN_FILENO) > 0) /* Manages non-interactive use. */
 		write(STDOUT_FILENO, "\n", 1); /* Newline after ending. */
-	free(buffer);
 	if (exec_res == 127)
 		exit(127);
 	return (exec_res); /* Manage non-interactive use. */

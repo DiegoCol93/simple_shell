@@ -7,10 +7,11 @@
  *  Arguments:
  *   @args_Bu:  - Pointer to array of strings with the tokens
  *                for the command used and its arguments.
- *
  *     @env:    - Pointer to the enviroment variables.
- *
  *   @buffer:   - Pointer to buffer of commands.
+ *   @cmd_Num:  - Number to count number of commands ran so far.
+ *  @prg_name:  - Pointer to argv[0] of main function,
+ *
  *
  *    Return:   - On success executes the built-in function,
  *                if the function was not found returns -1.
@@ -20,7 +21,8 @@
  * |--------------------- November 2020 ----------------------|
  *
  */
-int get_built_in(char **args_Bu, char **env, char *buffer)
+int get_built_in(char **args_Bu, char **env, char *buffer,
+		 unsigned int cmd_Num, char *prg_name)
 {
 	int i, equal = 0;
 	int (*f)();
@@ -41,7 +43,8 @@ int get_built_in(char **args_Bu, char **env, char *buffer)
 				if (i == 0) /* Call for exit function. */
 				{
 /*					free_exec(args_Bu); free inside exit. */
-					f(buffer, args_Bu);
+					f(buffer, args_Bu, cmd_Num, prg_name);
+					return (-3);
 				}
 				if (i == 1) /* Call for env function. */
 				{
