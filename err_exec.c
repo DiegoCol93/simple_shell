@@ -98,6 +98,11 @@ void err_exit(char **argv, unsigned int cmd_Num, char *prg_name)
 	_itoa_err(cmd_Num); /* Converts cmd # and prints it to STDERR. */
 	write(STDERR_FILENO, ": ", 2); /* Write format ": " string. */
 
+	for (i = 0; argv[0][i]; i++) /* For getting lenght of input cmd. */
+	{}
+	write(STDERR_FILENO, argv[0], i); /* Writes cmd used by user. */
+	write(STDERR_FILENO, ": ", 2); /* Write format ": " string. */
+
 	write(STDERR_FILENO, "Illegal number: ", 16); /* Writes err msg. */
 
 	for (i = 0; argv[1][i]; i++) /* For getting lenght of input argument. */
