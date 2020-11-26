@@ -37,12 +37,15 @@ int get_built_in(char **args_Bu, char **env, char *buffer,
 		{
 			/*Compare args_Bu with structure string*/
 			equal = _strcmp(args_Bu[0], built[i].str);
+			if (equal != 0)
+			{
+				return (-1);
+			}
 			if (equal == 0)
 			{
 				f = built[i].f;
 				if (i == 0) /* Call for exit function. */
 				{
-/*					free_exec(args_Bu); free inside exit. */
 					res = f(buffer, args_Bu, cmd_Num, prg_name);
 					if (res  == 2)
 						return (-3);

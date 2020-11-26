@@ -1,7 +1,8 @@
 #include "holberton.h"
 /**
- * _puts - Prints string.
- * @str: String input.
+ * _putsERR - Prints string, on the STDERR.
+ *
+ *   @str: String input.
  */
 void _putsERR(char *str)
 {
