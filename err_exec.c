@@ -57,7 +57,7 @@ void err_not_found(char **argv, unsigned int cmd_Num, char *prg_name)
 
 	for (i = 0; prg_name[i]; i++) /* For getting lenght of prg_name. */
 	{}
-	write(STDERR_FILENO, prg_name, i); /* Write prg_name. */
+	write(STDERR_FILENO, prg_name, i - 1); /* Write prg_name. */
 	write(STDERR_FILENO, ": ", 2); /* Write format ": " string. */
 
 	_itoa_err(cmd_Num); /* Converts cmd # and prints it to STDERR. */
@@ -65,9 +65,10 @@ void err_not_found(char **argv, unsigned int cmd_Num, char *prg_name)
 
 	for (i = 0; argv[0][i]; i++) /* For getting lenght of input cmd. */
 	{}
-	write(STDERR_FILENO, argv[0], i); /* Writes cmd used by user. */
+	write(STDERR_FILENO, argv[0], i - 1); /* Writes cmd used by user. */
 
-	write(STDERR_FILENO, ": not found\n", 12); /* Writes err msg. */
+	perror(" ");
+/*	write(STDERR_FILENO, ": not found\n", 12); /* Writes err msg. */
 
 	free_exec(argv);
 }
