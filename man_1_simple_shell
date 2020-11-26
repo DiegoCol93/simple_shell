@@ -1,0 +1,118 @@
+.\"
+.\"		This is the man page of the simple shell.
+.\"
+.\"			A command line interpreter.
+.\"
+.\" |----------- Written by Daniel Cortes and Diego Lopez --------------|
+.\"         ______   __   __    __   ______  __       ______
+.\"        /\  ___\ /\ \ /\  -./  \ /\  == \/\ \     /\  ___\
+.\"        \ \___  \\ \ \\ \ \-./\ \\ \  _-/\ \ \____\ \  __\
+.\"         \/\_____\\ \_\\ \_\ \ \_\\ \_\   \ \_____\\ \_____\
+.\"          \/_____/ \/_/ \/_/  \/_/ \/_/    \/_____/ \/_____/
+.\"               ______   __  __   ______   __       __
+.\"              /\  ___\ /\ \_\ \ /\  ___\ /\ \     /\ \
+.\"              \ \___  \\ \  __ \\ \  __\ \ \ \____\ \ \____
+.\"               \/\_____\\ \_\ \_\\ \_____\\ \_____\\ \_____\
+.\"                \/_____/ \/_/\/_/ \/_____/ \/_____/ \/_____/
+.\"
+.\" |-------------------------- November 2020 --------------------------|
+.\"
+.\"  -This was the final project of the first trimester at Holberton school
+.\"     in the campus of Bogotá, Colombia, Cohort 13.
+.\"
+.\"  -We were given 2 weeks from Nov-11-2020 to Nov-26-2020 and we were
+.\"     given a few basic tasks to begin such a demmanding project.
+.\"
+.\"  ------- Space for hopefully including a link to all of the basic
+.\"     tasks we were given, solved and explained.
+.\"
+.\"  -The description of the sofware created on the span of 2 weeks is
+.\"     located here, and any use or distribution of this software and
+.\"     any of its contents is permitted, but without the modification
+.\"     of the description contained within this comment section and any
+.\"     comment sections contained within the source files.
+.\"
+.\"  -Any and all contributions are welcome and should be sent over the
+.\"     official git hub repositoty at:
+.\"
+.\"      https://github.com/DiegoCol93/simple_shell
+.\"
+.\"  -To add this man page to your man pages change the name of this
+.\"     file to hsh.1.gz if it's not already and run this command:
+.\"
+.\"      sudo cp hsh.1.gz /usr/share/man/man1/
+.\"
+.\"    And you would've added this file into the man 1 directory,
+.\"     you may now run:
+.\"
+.\"      man hsh
+.\"
+.\"		Last modified Nov-23-2020 by Diego Lopez.
+.\"
+.TH HSH "1" "Nov-2020" "By Diego Lopez, Daniel Cortes" "Holberton Simple Shell"
+.\" Start of the NAME section.
+.SH NAME
+.RS 4
+hsh
+.B \- |
+a custom built, command line interpreter.
+.\" End of NAME section
+.SH SYNOPSIS
+.RS 4
+.B ./hsh
+.\" Start of the DESCRIPTION section.
+.SH DESCRIPTION
+.B hsh
+
+or Holberton simple shell, is a command line interpreter or
+.B
+shell
+following the tradition of the first
+.B Unix
+shell written by
+.B Ken Thompson
+in 1971.
+
+This program is an interpreter of the commands written into it, that is,
+this is a program that reads the characters from the
+.B STDIN
+looking for a command entered by the user after the
+.B prompt
+simbolized by a dollar sign and a pipeline
+
+providing an interface for the user as follows:
+, on our custom
+.B prompt
+
+.RS 4
+.B $ | 
+_ , the underscore 
+.B _
+denotes where the user input goes.
+.RE
+
+It reads, interprets and executes the command for the corresponding
+.B Linux
+program or
+.B executable
+found in the user's
+.B PATH
+, current directory or by direct path call, with the
+arguments used by the program being called.
+
+Standard C functions and system calls employed for this simple_shell are:
+
+.B execve()
+.B exit()
+.B fork()
+.B free()
+.B stat()
+.B getline()
+.B malloc()
+.B perror()
+.B signal()
+.B stat()
+.B wait()
+.B write()
+
+Currently working on it.
