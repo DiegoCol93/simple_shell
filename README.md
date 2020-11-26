@@ -24,42 +24,42 @@ Standard C functions  and system calls employed for this simple_shell:
 ## File Structure
 
 * **Files with general information about the program:**
-  	  * [AUTHORS](AUTHORS) - List of contributors to this repository
-	    * [man_1_simple_shell](man_1_simple_shell) - Manual page for the simple_shell
+    * [AUTHORS](AUTHORS) - List of contributors to this repository.
+    * [man_1_simple_shell](man_1_simple_shell) - Manual page for the simple_shell
 * **Header file with all prototypes function used all around the program**
-  	   * [holberton.h](shell.h) - Header file with fuction prototypes
+    * [holberton.h](shell.h) - Header file with fuction prototypes.
 * **Functions to manages strings:**
-  	      * [_strdup.c](strdup.c) - Duplicates a string.
-	      	* [_strcmp.c](strcmp.c) - Compares two strings.
-		  * [divide_string.c](divide_string.c) - Creates an array of tokens from a buffer with a specified delimiter
+    * [_strdup.c](strdup.c) - Duplicates a string.
+    * [_strcmp.c](strcmp.c) - Compares two strings.
+    * [divide_string.c](divide_string.c) - Creates an array of tokens from a buffer with a specified delimiter
 * **Functions to manages prompt of the shell:**
-  	      * [prompt_getline.c](prompt_getline.c) - The main function of the program. The prompt of our custom shell.
-	      	* [_getchar.c](_getchar.c) - Read each character from the stdin.
-		  * [_getline.c](_getline.c) - Custom getline function to get the line string from stdin.
+    * [prompt_getline.c](prompt_getline.c) - The main function of the program. The prompt of our custom shell.
+    * [_getchar.c](_getchar.c) - Read each character from the stdin.
+    * [_getline.c](_getline.c) - Custom getline function to get the line string from stdin.
 * **Functions to manages to manage commands with the PATH:**
-  	      * [_getenv.c](_getenv.c) - Get the value of the enviroment variable.
-	      	* [_which.c](_which.c) - Concatenate the command with the PATH environment variable. 
-		  * [list_path.c](list_path.c) - Create a linked list of the directories inside the PATH enviroment variable
-		    * [add_node_end.c](add_node_end.c) - Function adds a new node at the end of linked list.
-		      * [list_path.c](list_path.c) - Function adds a new node at the end of linked list.
-		      	* [print_path.c](print_path.c) - Function that prints the linked list with the PATH values (This is only useful for debugging the code).
-			  * [print_path.c](print_list.c) - Function that prints a linked list (this is only useful for debugging the code).
+    * [_getenv.c](_getenv.c) - Get the value of the enviroment variable.
+    * [_which.c](_which.c) - Concatenate the command with the PATH environment variable. 
+    * [list_path.c](list_path.c) - Create a linked list of the directories inside the PATH enviroment variable
+    * [add_node_end.c](add_node_end.c) - Function adds a new node at the end of linked list.
+    * [list_path.c](list_path.c) - Function adds a new node at the end of linked list.
+    * [print_path.c](print_path.c) - Function that prints the linked list with the PATH values (This is only useful for debugging the code).
+    * [print_path.c](print_list.c) - Function that prints a linked list (this is only useful for debugging the code).
 * **Functions to manages built-in commands:**
-  	      * [get_builtin.c](get_builtin.c) - Function that look for built-in pointer function of built-in.
-	      	* [exit.c](exit.c) - Function to manage the built-in exit function.
-		  * [print_env.c](print_env.c) - Prints all the environment variables and its values.
+    * [get_builtin.c](get_builtin.c) - Function that look for built-in pointer function of built-in.
+    * [exit.c](exit.c) - Function to manage the built-in exit function.
+    * [print_env.c](print_env.c) - Prints all the environment variables and its values.
 * **Functions to create and execute a new proccess:**
-  	      * [exec.c](exec.c) - Function to create a new process and execute.
+    * [exec.c](exec.c) - Function to create a new process and execute.
 * **Function to manage signal from the stdin:**
-  	     * [crtl-C.c](crtl-C.c) - Function to manage signal crtl-C from the stdin.   
+    * [crtl-C.c](crtl-C.c) - Function to manage signal crtl-C from the stdin.   
 * **Functions to handle errors:**
-  	      * [err_exec.c](err_exec.c) - Funtion to handling  errors.
+    * [err_exec.c](err_exec.c) - Funtion to handling  errors.
 * **Functions that frees allocated memory:**
-  	      * [freedom.c](freedom.c) - Function that frees all allocate memory in an array buffer.
-	      	* [free_list.c](free_list.c) - Function that frees  all allocate memory in a linked list.
-* **Other needed functions:**		       * 
-  	  * [_itoa.c](_itoa.c) - Custom itoa function to print a unsigned int value. 
-	    * [_calloc.c](_calloc.c) - Function that allocate memory and initialized.
+    * [freedom.c](freedom.c) - Function that frees all allocate memory in an array buffer.
+    * [free_list.c](free_list.c) - Function that frees  all allocate memory in a linked list.
+* **Other needed functions:**	   * 
+    * [_itoa.c](_itoa.c) - Custom itoa function to print a unsigned int value. 
+    * [_calloc.c](_calloc.c) - Function that allocate memory and initialized.
 
 ## Requirements
 
@@ -83,7 +83,7 @@ The simple_shell is designed to execute commands in a similar manner to sh, howe
 - [x] implements builtins
 - [x] handles command line arguments
 - [ ] custom strtok function
-- [x] uses exit status
+- [ ] uses exit status
 - [x] shell continues upon Crtl+C (**^C**)
 - [ ] handles comments (#)
 - [ ] handles **;**
