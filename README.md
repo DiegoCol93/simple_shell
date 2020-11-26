@@ -136,6 +136,10 @@ total 120
 -rw-rw-r-- 1 vagrant vagrant 5603 Nov 26 16:43 README.md
 
 ```
+
+## Simple flowchart of this simple_shell
+<a href="https://imgur.com/8Hjgx4Y"><img src="https://i.imgur.com/8Hjgx4Y.png" title="source: imgur.com" /></a>
+
 ## Bugs
 At this time, there are no known bugs.
 
