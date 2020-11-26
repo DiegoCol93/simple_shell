@@ -32,6 +32,8 @@ char *_getenv(const char *name, char **env)
 				if (env[i][j] == '=')
 				{
 					env_value = env[i] + j + 1;
+					if (env_value[0] == '\0' && !env_value)
+						return (NULL);
 					break;
 				}
 			}
