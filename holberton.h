@@ -50,7 +50,6 @@ typedef struct list_s
 
 /* - - - - - - - - - - - String manipulation functions. - - - - - - - - - - */
 
-
 void _putsERR(char *str);
 
 /* Function that get the line from the prompt*/
