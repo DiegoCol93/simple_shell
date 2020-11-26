@@ -68,7 +68,7 @@ void err_not_found(char **argv, unsigned int cmd_Num, char *prg_name)
 	write(STDERR_FILENO, argv[0], i - 1); /* Writes cmd used by user. */
 
 	perror(" ");
-/*	write(STDERR_FILENO, ": not found\n", 12); /* Writes err msg. */
+/*	write(STDERR_FILENO, ": not found\n", 12);  Writes err msg. */
 
 	free_exec(argv);
 }
