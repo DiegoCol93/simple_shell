@@ -22,7 +22,7 @@ int execute(unsigned int cmd_Num, char **args_Ex, char **env, char *prg_name)
 	struct stat st;
 	pid_t pid;
 
-	if (stat(args_Ex[0], &st) == -1)
+	if (stat(args_Ex[0], &st) == -1 && args_Ex[0])
 	{
 		if (check_path(args_Ex, cmd_Num, env, prg_name) != 0)
 			return (127);
@@ -109,6 +109,7 @@ int check_path(char **arg_Ex, unsigned int cmd_Num, char **env, char *prg_name)
 	path_name = _which(arg_Ex, env);
 	if (path_name == NULL)
 	{
+
 		err_not_found(arg_Ex, cmd_Num, prg_name);
 		return (127);
 	}

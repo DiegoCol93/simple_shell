@@ -1,5 +1,5 @@
 # This file lists all individuals having contributed content to the repository.
-# For how it is generated, see `utilites/generate-authors.sh`.
+# For how it is generated, see `hack/generate-authors.sh`.
 
 Diego Lopez <dfelo93@gmail.com>
 Daniel Cortes <danicor83@gmail.com>

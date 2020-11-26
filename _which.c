@@ -20,22 +20,25 @@ char *_which(char **args_Ex, char **env)
 	char *ptr = NULL, *fn = args_Ex[0];
 	struct stat st;
 
-	if (fn[0] == '.')
+	if (args_Ex && args_Ex[0])
 	{
-		ptr = check_cwd(fn, env);
-		if (stat(ptr, &st) == -1)
+		if (fn[0] == '.')
 		{
-			free(ptr);
-			return (NULL);
+			ptr = check_cwd(fn, env);
+			if (stat(ptr, &st) == -1)
+			{
+				free(ptr);
+				return (NULL);
+			}
+			else
+				return (ptr);
 		}
 		else
-			return (ptr);
-	}
-	else
-	{
-		ptr = cat_path(args_Ex, env);
-		if (ptr)
-			return (ptr);
+		{
+			ptr = cat_path(args_Ex, env);
+			if (ptr)
+				return (ptr);
+		}
 	}
 	return (NULL);
 }
