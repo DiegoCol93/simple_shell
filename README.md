@@ -138,7 +138,7 @@ total 120
 ```
 
 ## Simple flowchart of this simple_shell
-<a href="https://imgur.com/8Hjgx4Y"><img src="https://i.imgur.com/8Hjgx4Y.png" title="source: imgur.com" /></a>
+![](https://imgur.com/8Hjgx4Y)
 
 ## Bugs
 At this time, there are no known bugs.
