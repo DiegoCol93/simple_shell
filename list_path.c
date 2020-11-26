@@ -39,7 +39,8 @@ list_t *list_path(const char *name, char **env)
 	else
 	{
 		directories = divide_string(value_2, ":");
-		free(value_2);
+		if (value_2)
+			free(value_2);
 	}
 	for (i = 0; directories[i]; i++)
 		if (directories[i])

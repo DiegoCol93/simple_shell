@@ -128,6 +128,7 @@ char *cat_path(char **args_Ex, char **env)
 			tmp = tmp->next;
 		}
 	}
-	free_list(head);
+	if (head)
+		free_list(head);
 	return (NULL);
 }

@@ -112,6 +112,7 @@ int check_path(char **arg_Ex, unsigned int cmd_Num, char **env, char *prg_name)
 		err_not_found(arg_Ex, cmd_Num, prg_name);
 		return (127);
 	}
-	free(path_name);
+	if (path_name)
+		free(path_name);
 	return (0);
 }
