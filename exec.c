@@ -21,11 +21,13 @@ int execute(unsigned int cmd_Num, char **args_Ex, char **env, char *prg_name)
 	int status, result = 0;
 	struct stat st;
 	pid_t pid;
-
-	if (stat(args_Ex[0], &st) == -1 && args_Ex[0])
+	if (args_Ex[0])
 	{
-		if (check_path(args_Ex, cmd_Num, env, prg_name) != 0)
-			return (127);
+		if (stat(args_Ex[0], &st) == -1)
+		{
+			if (check_path(args_Ex, cmd_Num, env, prg_name) != 0)
+				return (127);
+		}
 	}
 	if (args_Ex && args_Ex[0])
 	{ /*Fork a child process.*/
