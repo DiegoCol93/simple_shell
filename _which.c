@@ -1,5 +1,4 @@
 #include "holberton.h"
-
 /**
  * _which       - Function that returns the absolute path.
  *
@@ -27,42 +26,6 @@ char *_which(char **args_Ex, char **env)
 	}
 	return (NULL);
 }
-/**
- * check_cwd      - Function that looks for a file in the PWD.
- *
- *  Arguments:
- *  @filename:  - Name of the file to find on PWD.
- *     @env:    - Pointer to enviroment variables.
- *
- *   Return:    - On succes returns a concatenated string with
- *                the absolute path to the file being called or
- *                NULL if it fails.
- *
- * |----------------- Written by Daniel Cortes -----------------|
- * |--------------------- and Diego Lopez ----------------------|
- * |---------------------- November 2020 -----------------------|
- */
-char *check_cwd(char *filename, char **env)
-{
-	int i, j, k = 0;
-	char *pwd = NULL, *ptr = NULL;
-
-	pwd = _getenv("PWD", env);
-	for (i = 0; pwd[i]; i++)
-	{}
-	for (j = 1; filename[j]; j++)
-	{}
-	ptr = malloc(sizeof(char) * (i + j));
-	for (i = 0; pwd[i]; i++)
-		ptr[i] = pwd[i];
-	for (j = 1; filename[j]; j++, k++)
-	{
-		ptr[i + k] = filename[j];
-	}
-	ptr[i + j - 1] = '\0';
-	return (ptr);
-}
-
 /**
  * cat_path     - Function that looks for files in the PATH.
  *

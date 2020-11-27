@@ -25,7 +25,7 @@ char *_getenv(const char *name, char **env)
 	{
 		for (j = 0; env[i][j] != '='; j++)
 		{
-			equal =	env[i][j] - name[j];
+			equal =env[i][j] - name[j];
 			if (equal != 0)
 				break;
 		}
@@ -41,6 +41,5 @@ char *_getenv(const char *name, char **env)
 			}
 		}
 	}
-	printf("return : %s\n", env_value);
 	return (env_value);
 }
