@@ -1,4 +1,4 @@
-<a href="https://imgur.com/tJA0FHf"><img src="https://i.imgur.com/tJA0FHf.png" title="source: imgur.com" /></a>
+![](https://i.imgur.com/tJA0FHf.png)
 
 ## Table of Contents
 
@@ -138,7 +138,7 @@ total 120
 ```
 
 ## Simple flowchart of this simple_shell
-[img]https://i.imgur.com/8Hjgx4Y.png[/img]
+![](https://i.imgur.com/8Hjgx4Y.png)
 
 ## Bugs
 At this time, there are no known bugs.
