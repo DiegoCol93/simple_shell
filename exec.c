@@ -72,7 +72,7 @@ void child_Ex(char **args_Ex, char **env, unsigned int cmd_Num, char *prg_name)
 {
 	char *path_name = NULL;
 
-	if (args_Ex[0][0] == '/' || args_Ex[0][0] == '.')
+	if ((args_Ex[0][0] == '/' || args_Ex[0][0] == '.') && args_Ex[0])
 	{ /* If it is a regular file execute */
 		execve(args_Ex[0], args_Ex, env);
 		err_not_found(args_Ex, cmd_Num, prg_name);
