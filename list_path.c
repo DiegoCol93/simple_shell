@@ -21,33 +21,36 @@ list_t *list_path(const char *name, char **env)
 
 	value = _getenv(name, env);
 	value_2 = _strdup(value);
-	if (value_2[0] == ':')
+	if (value_2)
 	{
-		for (i = 0; value_2[i]; i++)
-		{}
-		ptr = malloc(sizeof(char) * i + 2);
-		if (ptr == NULL)
-			return (NULL);
-		for (i = 0; value_2[i]; i++)
+		if (value_2[0] == ':')
 		{
-			ptr[0] = '.';
-			ptr[i + 1] = value_2[i];
+			for (i = 0; value_2[i]; i++)
+			{}
+			ptr = malloc(sizeof(char) * i + 2);
+			if (ptr == NULL)
+				return (NULL);
+			for (i = 0; value_2[i]; i++)
+			{
+				ptr[0] = '.';
+				ptr[i + 1] = value_2[i];
+			}
+			directories = divide_string(ptr, ":");
+			free(ptr);
 		}
-		directories = divide_string(ptr, ":");
-		free(ptr);
-	}
-	else
-	{
-		directories = divide_string(value_2, ":");
-		if (value_2)
-			free(value_2);
-	}
-	for (i = 0; directories[i]; i++)
-		if (directories[i])
+		else
 		{
-			add_node_end(&head, directories[i]);
-			free(directories[i]);
+			directories = divide_string(value_2, ":");
+			if (value_2)
+				free(value_2);
 		}
+		for (i = 0; directories[i]; i++)
+			if (directories[i])
+			{
+				add_node_end(&head, directories[i]);
+				free(directories[i]);
+			}
+	}
 	free(directories);
 /*	print_list(head);    */
 	return (head);
