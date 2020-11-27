@@ -23,14 +23,15 @@
 .\"  -We were given 2 weeks from Nov-11-2020 to Nov-26-2020 and we were
 .\"     given a few basic tasks to begin such a demmanding project.
 .\"
-.\"  ------- Space for hopefully including a link to all of the basic
-.\"     tasks we were given, solved and explained.
+.\"  ---------- Space for hopefully including a link to all of the basic
+.\"     tasks we were given, solved and explained. --------------------
 .\"
 .\"  -The description of the sofware created on the span of 2 weeks is
 .\"     located here, and any use or distribution of this software and
 .\"     any of its contents is permitted, but without the modification
 .\"     of the description contained within this comment section and any
-.\"     comment sections contained within the source files.
+.\"     comment sections contained within the source files, these must
+.\"     be included with any copy of the files used in the repository.
 .\"
 .\"  -Any and all contributions are welcome and should be sent over the
 .\"     official git hub repositoty at:
@@ -38,7 +39,7 @@
 .\"      https://github.com/DiegoCol93/simple_shell
 .\"
 .\"  -To add this man page to your man pages change the name of this
-.\"     file to hsh.1.gz if it's not already and run this command:
+.\"     file to hsh.1.gz, if it's not already, and run this command:
 .\"
 .\"      sudo cp hsh.1.gz /usr/share/man/man1/
 .\"
@@ -56,15 +57,21 @@
 hsh
 .B \- |
 a custom built, command line interpreter.
-.\" End of NAME section
+.\" End of the NAME section.
+.\"
+.\" Start of the SYNOPSIS section.
 .SH SYNOPSIS
 .RS 4
 .B ./hsh
+.RI [ no
+.I options
+.IR yet ].
+.\" End of the SYNOPSIS section.
+.\"
 .\" Start of the DESCRIPTION section.
 .SH DESCRIPTION
-.B hsh
-
-or Holberton simple shell, is a command line interpreter or
+.BR hsh
+or holberton simple shell, is a command line interpreter or
 .B
 shell
 following the tradition of the first
@@ -72,21 +79,24 @@ following the tradition of the first
 shell written by
 .B Ken Thompson
 in 1971.
-
+.\" Start of the Overview sub-section.
+.SS Overview
 This program is an interpreter of the commands written into it, that is,
 this is a program that reads the characters from the
 .B STDIN
 looking for a command entered by the user after the
 .B prompt
-simbolized by a dollar sign and a pipeline
+simbolized by a dollar
+.RB ( $ )
+sign and a pipeline
+.RB ( | )
+,
 
 providing an interface for the user as follows:
-, on our custom
-.B prompt
 
 .RS 4
-.B $ | 
-_ , the underscore 
+.B $ | _
+, the underscore
 .B _
 denotes where the user input goes.
 .RE
@@ -96,23 +106,197 @@ It reads, interprets and executes the command for the corresponding
 program or
 .B executable
 found in the user's
-.B PATH
-, current directory or by direct path call, with the
+.BR PATH ,
+current directory or by direct path call, with the
 arguments used by the program being called.
 
-Standard C functions and system calls employed for this simple_shell are:
+The standard C functions and system calls employed for this simple_shell are:
 
-.B execve()
-.B exit()
-.B fork()
-.B free()
-.B stat()
-.B getline()
-.B malloc()
-.B perror()
-.B signal()
-.B stat()
-.B wait()
-.B write()
+.BR execve() ,
+.BR exit() ,
+.BR fork() ,
+.BR free() ,
+.BR stat() ,
+.BR malloc() ,
+.BR perror() ,
+.BR signal() ,
+.BR stat() ,
+.BR strtok ,
+.BR wait() ,
+.BR write() ,
+.BR _getline()
+- custom built.
+.\" Start of the Invocation sub-section.
+.SS Invocation
+To run this simple_shell, you have to compile it using all of the
+.B .c
+files and the header file
+.B .h
+located on the repository and run the
+.BR G NU
+.BR C ompiler
+.BR C ollection
+version 4.8 and onward with the following flags:
 
-Currently working on it.
+.RS 4
+.B gcc
+.BI - Wall
+.BI - Werror
+.BI - Wextra
+.BI - pedantic
+*.c
+.B -o
+.I hsh
+.RE
+
+You may now write
+.B ./hsh
+to run the simple_shell on inter-active mode.
+.\" Start of the How to use sub-section.
+.SS How to use
+after running
+.B ./hsh
+in your terminal, the
+.B prompt
+.RB ( $
+.B |
+)
+appears and now you can run programs like:
+.BR ls ,
+.BR echo ,
+.BR top ,
+and many more.
+
+.\" Start of built-in sub-section.
+.SS Built-ins
+There are two included built-in functions with this shell:
+.RS 4
+.B env
+.RS
+This function prints all of the enviroment variables inherited from the parent
+process.
+.RE
+
+.B exit
+.RS
+This function exits the shell and returns the code of the last execution,
+if no argument is provided or with the number provided after the call of exit
+
+.RS 4
+exit
+.RB ( number )
+
+.\" Start of Examples sub-section.
+.SS Examples
+.\" Start of echo example.
+.B echo
+
+.PD 0
+.RS 4
+.B $ |
+echo Holberton School.
+.HP
+Holberton School.
+.HP
+.B $ | _
+.RE
+
+.\" End of echo example.
+.\"
+.\" Start of ls -l example.
+.B ls -l
+
+.PD 0
+.RS 4
+.B $ |
+ls -l
+.HP 0
+total 120
+.HP 0
+-rw-rw-r-- 1 vagrant vagrant  870 Nov 26 11:24 add_node_end.c
+.HP 0
+-rw-rw-r-- 1 vagrant vagrant  813 Nov 26 11:24 _atoi.c
+.HP 0
+-rw-rw-r-- 1 vagrant vagrant  207 Nov 26 11:24 AUTHORS
+.HP 0
+-rw-rw-r-- 1 vagrant vagrant  765 Nov 26 11:24 _calloc.c
+.HP
+-rw-rw-r-- 1 vagrant vagrant  378 Nov 26 11:24 ctrl-C.c
+.HP
+-rw-rw-r-- 1 vagrant vagrant 1107 Nov 26 11:24 divide_string.c
+.HP
+-rw-rw-r-- 1 vagrant vagrant 5211 Nov 26 11:24 err_exec.c
+.HP
+-rw-rw-r-- 1 vagrant vagrant 3460 Nov 26 11:24 exec.c
+.HP
+-rw-rw-r-- 1 vagrant vagrant 1079 Nov 26 11:24 exit.c
+.HP
+-rw-rw-r-- 1 vagrant vagrant  464 Nov 26 11:24 freedom.c
+.HP
+-rw-rw-r-- 1 vagrant vagrant  487 Nov 26 11:24 free_list.c
+.HP
+-rw-rw-r-- 1 vagrant vagrant 1650 Nov 26 11:24 get_builtin.c
+.HP
+-rw-rw-r-- 1 vagrant vagrant  699 Nov 26 11:24 _getchar.c
+.HP
+-rw-rw-r-- 1 vagrant vagrant 1002 Nov 26 11:24 _getenv.c
+.HP
+-rw-rw-r-- 1 vagrant vagrant 1000 Nov 26 11:24 _getline.c
+.HP
+-rw-rw-r-- 1 vagrant vagrant 4756 Nov 26 11:24 holberton.h
+.HP
+-rw-rw-r-- 1 vagrant vagrant  831 Nov 26 11:24 _itoa.c
+.HP
+-rw-rw-r-- 1 vagrant vagrant 1303 Nov 26 11:24 list_path.c
+.HP
+-rwxrwxr-x 1 vagrant vagrant 3459 Nov 26 13:44 man_1_simple_shell
+.HP
+-rw-rw-r-- 1 vagrant vagrant  548 Nov 26 11:24 print_env.c
+.HP
+-rw-rw-r-- 1 vagrant vagrant  620 Nov 26 11:24 print_list.c
+.HP
+-rw-rw-r-- 1 vagrant vagrant  652 Nov 26 11:24 print_path.c
+.HP
+-rw-rw-r-- 1 vagrant vagrant 3384 Nov 26 11:24 prompt_getline.c
+.HP
+-rw-rw-r-- 1 vagrant vagrant 5603 Nov 26 11:24 README.md
+.HP
+-rw-rw-r-- 1 vagrant vagrant  679 Nov 26 11:24 _strcmp.c
+.HP
+-rw-rw-r-- 1 vagrant vagrant  689 Nov 26 11:24 _strdup.c
+.HP
+-rw-rw-r-- 1 vagrant vagrant 3376 Nov 26 11:24 _which.c
+.HP
+.B $ | _
+.RE
+
+.\" End of ls -l example.
+.\"
+.\" Start of exit example.
+.B exit
+
+.PD 0
+.RS 4
+.HP
+.B /simple_shell$
+echo $?
+.HP
+.B 0
+.HP
+.B /simple_shell$
+echo
+.B
+"exit 98"
+|
+.B ./hsh
+.HP
+.B /simple_shell$
+echo $?
+.HP
+.B 98
+.HP
+.B /simple_shell$ _
+
+.\" End of exit 98 example.
+.\"
+.\" End of Examples sub-section.

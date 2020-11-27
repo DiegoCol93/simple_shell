@@ -80,9 +80,6 @@ char **divide_string(char *str, const char *delim);
 /* Function that looks for files in the PATH. */
 char *cat_path(char **args_Ex, char **env);
 
-/* Function that looks for a file in the PWD. */
-char *check_cwd(char *filename, char **env);
-
 
 /* - - - - - - - - - - - Memory manupulation functions. - - - - - - - - - - */
 

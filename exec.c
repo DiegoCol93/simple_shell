@@ -21,7 +21,8 @@ int execute(unsigned int cmd_Num, char **args_Ex, char **env, char *prg_name)
 	int status, result = 0;
 	struct stat st;
 	pid_t pid;
-	if (args_Ex[0])
+
+	if (args_Ex[0] && args_Ex[0][0] != '.')
 	{
 		if (stat(args_Ex[0], &st) == -1)
 		{
@@ -71,7 +72,7 @@ void child_Ex(char **args_Ex, char **env, unsigned int cmd_Num, char *prg_name)
 {
 	char *path_name = NULL;
 
-	if (args_Ex[0][0] == '/') /*&& S_ISREG(st.st_mode))*/
+	if (args_Ex[0][0] == '/' || args_Ex[0][0] == '.')
 	{ /* If it is a regular file execute */
 		execve(args_Ex[0], args_Ex, env);
 		err_not_found(args_Ex, cmd_Num, prg_name);
