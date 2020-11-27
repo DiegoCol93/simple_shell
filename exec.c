@@ -86,7 +86,7 @@ void child_Ex(char **args_Ex, char **env, unsigned int cmd_Num, char *prg_name)
 		if (path_name)
 			execve(path_name, args_Ex, env);
 		err_not_found(args_Ex, cmd_Num, prg_name);
-		exit(EXIT_FAILURE);
+		exit(127);
 	}
 /*	if (stat(args_Ex[0], &st))*/
 /*		free(path_name);*/
