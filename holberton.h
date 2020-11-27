@@ -104,12 +104,6 @@ void free_exec(char **argv);
 /* Function to print the enviroment variables. */
 int print_env(char **env);
 
-/* Function that prints directories of the path env. */
-void print_path(char *name);
-
-/* Function that print a linked list. */
-size_t print_list(const list_t *h);
-
 
 /* - - - - - - - - - - - - - - Runtime functions. - - - - - - - - - - - - -*/
 
