@@ -83,7 +83,8 @@ void child_Ex(char **args_Ex, char **env, unsigned int cmd_Num, char *prg_name)
 	else
 	{
 		path_name = _which(args_Ex, env);
-		execve(path_name, args_Ex, env);
+		if (path_name)
+			execve(path_name, args_Ex, env);
 		err_not_found(args_Ex, cmd_Num, prg_name);
 		exit(EXIT_FAILURE);
 	}
