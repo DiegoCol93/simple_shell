@@ -23,8 +23,7 @@ char *_getenv(const char *name, char **env)
 
 	for (i = 0; env[i] != NULL; i++) /* Runs through env variables */
 	{
-		for (j = 0; env[i][j] != '='; j++)
-			equal = _strcmp(env[i], name);
+		equal = _strcmp(env[i], name);
 		if (equal == 0)
 		{
 			for (j = 0; env[i][j]; j++)
