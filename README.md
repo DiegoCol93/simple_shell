@@ -14,7 +14,7 @@
 
 ## Description
 
-simple_shell is a command line interpreter, or shell, in the tradition of the first Unix shell written by Ken Thompson in 1971. Remember that it is the command interpretor in an operating system such as Unix or **Linux**, it executes other programs. It provides a computer user an interface to the Unix or **Linux** system, so that the user can run different commands or utilities/tools with some input data.
+Simple_shell is a command line interpreter, or shell, in the tradition of the first Unix shell written by Ken Thompson in 1971. Remember that it is the command interpretor in an operating system such as Unix or **Linux**, it executes other programs. It provides a computer user an interface to the Unix or **Linux** system, so that the user can run different commands or utilities/tools with some input data.
 
 So, this is really our mini shell, it  is intentionally minimalistic, but it isvery reliable. Yet includes the basic functionality of a traditional Unix-like command line user interface, but we are working to improve it and to add more functionalities.
 
